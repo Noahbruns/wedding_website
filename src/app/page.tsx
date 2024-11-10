@@ -1,28 +1,45 @@
-import { HydrateClient } from "~/trpc/server";
-import Text from "~/images/TEXT.svg";
+import type { NextPage } from "next";
+import Invitation from "~/images/Invitation.svg";
+import Timeline from "~/images/Timeline.svg";
+import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
-export default async function Home() {
+const Main: NextPage = () => {
   return (
-    <HydrateClient>
-      <main className="bg-main min-h-screen w-screen snap-y snap-mandatory overflow-y-auto bg-white text-black">
-        <div className="flex w-screen flex-col bg-[url('/main.jpg')] bg-cover bg-top text-white">
-          <div className="flex h-screen w-screen snap-center flex-col items-center justify-center p-10">
-            <Text className="h-full w-full" />
-          </div>
-          <div className="h-24 bg-gradient-to-t from-black/45 md:h-72"></div>
-          <div className="h-screen snap-center bg-black/45">
-            <div className="container mx-auto grid h-full grid-cols-1 gap-2 p-4 text-lg uppercase md:grid-cols-2 md:gap-3 md:text-2xl">
-              <div className="flex flex-col gap-16">
-                <div>ANREISE</div>
-                <div>ÜBERNACHTUNG</div>
-                <div>MENU</div>
-                <div>BILDER</div>
-              </div>
-              <div className="text-right">asdfasdfasdf</div>
-            </div>
-          </div>
+    <>
+      <div className="snap-center sm:h-screen">
+        <div className="flex max-h-full max-w-full">
+          <Invitation className="" />
         </div>
-      </main>
-    </HydrateClient>
+      </div>
+      <div className="flex snap-center flex-col gap-32 pb-16">
+        <div className="order-first text-right text-xl uppercase leading-loose sm:order-none">
+          Wir laden euch <br />
+          herzlich zu unserer hochzeit
+          <br />
+          am 17. April 2025 ein
+        </div>
+      </div>
+      <div className="snap-center sm:h-screen">
+        <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
+          Ablauf
+          <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
+        </div>
+        <div className="flex max-h-full max-w-full">
+          <Timeline className="mx-auto" />
+        </div>
+      </div>
+      <div className="snap-center sm:h-screen">
+        <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
+          Übernachtung
+          <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
+        </div>
+        <div className="flex max-h-full max-w-full">
+          Optionen asdfassdf asdf asd f
+        </div>
+      </div>
+    </>
   );
-}
+};
+
+export default Main;
