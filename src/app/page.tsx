@@ -20,7 +20,7 @@ const Main: NextPage = () => {
           am 17. April 2025 ein
         </div>
       </div>
-      <div className="snap-center sm:h-screen">
+      <div className="snap-center">
         <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
           Ablauf
           <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
@@ -29,7 +29,7 @@ const Main: NextPage = () => {
           <Timeline className="mx-auto" />
         </div>
       </div>
-      <div className="snap-center sm:h-screen">
+      <div className="snap-center">
         <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
           Übernachtung
           <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
