@@ -8,8 +8,10 @@ const Main: NextPage = () => {
   return (
     <>
       <div className="snap-center sm:h-screen">
-        <div className="flex max-h-full max-w-full">
-          <Invitation className="" />
+        <div className="flex h-full">
+          <div className="w-full">
+            <Invitation />
+          </div>
         </div>
       </div>
       <div className="flex snap-center flex-col gap-32 pb-16">
@@ -25,7 +27,7 @@ const Main: NextPage = () => {
           Ablauf
           <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
         </div>
-        <div className="flex max-h-full max-w-full">
+        <div className="mx-auto flex max-w-xl">
           <Timeline className="mx-auto" />
         </div>
       </div>
