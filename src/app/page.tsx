@@ -34,8 +34,19 @@ const Main: NextPage = () => {
           Übernachtung
           <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
         </div>
-        <div className="flex max-h-full max-w-full">
-          Optionen asdfassdf asdf asd f
+        <div className="flex max-h-full max-w-full flex-col px-6 py-8">
+          <div className="mb-8 font-light italic">
+            Wir haben euch schon bei ein paar Hotels Zimmer vorreserviert die
+            ihr gerne buchen könnt. First Come First Serve.
+          </div>
+          <div className="flex flex-col">
+            <span className="shrink-0 font-medium uppercase">
+              Seebuchnerhof in Gurten
+            </span>
+            <div className="ml-4 font-light">
+              4km entfernt <br /> 1x Doppelzimmer und 2x 3-Bett Zimmer
+            </div>
+          </div>
         </div>
       </div>
     </>
