@@ -36,17 +36,72 @@ const Main: NextPage = () => {
           Übernachtung
           <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
         </div>
-        <div className="flex max-h-full max-w-full flex-col px-6 py-8">
-          <div className="mb-8 font-light italic">
+        <div className="flex max-h-full max-w-full flex-col gap-8 px-6 py-8">
+          <div className="mb-4 font-light italic">
             Wir haben euch schon bei ein paar Hotels Zimmer vorreserviert die
-            ihr gerne buchen könnt. First Come First Serve.
+            ihr gerne buchen könnt. First Come First Serve. Gebt bitte immer an,
+            dass ihr im Kontingent unserer Hochzeit bucht. Die Hotels halten die
+            Plätze bis zum ?. November frei.
           </div>
+
           <div className="flex flex-col">
             <span className="shrink-0 font-medium uppercase">
               Seebuchnerhof in Gurten
             </span>
-            <div className="ml-4 font-light">
-              4km entfernt <br /> 1x Doppelzimmer und 2x 3-Bett Zimmer
+            <div className="ml-6 mt-2 flex flex-col font-light">
+              <span>4km entfernt</span>
+              <span>1x Doppelzimmer, 2x 3-Bettzimmer und 2 Einzelzimmer</span>
+              <a
+                href="https://www.sachsenbucherhof.com"
+                className="hover:underline"
+              >
+                www.sachsenbucherhof.com
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <span className="shrink-0 font-medium uppercase">
+              Pension Wagner in Kirchheim
+            </span>
+            <div className="ml-6 mt-2 flex flex-col font-light">
+              <span>5km entfernt</span>
+              <span>1x Doppelzimmer, 2x 3-Bettzimmer und 2 Einzelzimmer</span>
+              <a
+                href="https://www.pension-wenger.at"
+                className="hover:underline"
+              >
+                www.pension-wenger.at
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <span className="shrink-0 font-medium uppercase">
+              Hotel Kaiserhof in Ried im Innkreis
+            </span>
+            <div className="ml-6 mt-2 flex flex-col font-light">
+              <span>10km entfernt</span>
+              <span>2x Junior Suite und 4x Classic Doppelzimmer</span>
+              <a href="https://www.derkaiserhof.at" className="hover:underline">
+                www.derkaiserhof.at
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <span className="shrink-0 font-medium uppercase">
+              H+ Hotel Ried
+            </span>
+            <div className="ml-6 mt-2 flex flex-col font-light">
+              <span>10km entfernt</span>
+              <span>20 Zimmer vorreserviert</span>
+              <a
+                href="https://www.h-hotels.com/de/hplus/hotels/hplus-hotel-ried"
+                className="hover:underline"
+              >
+                www.h-hotels.com
+              </a>
             </div>
           </div>
         </div>
