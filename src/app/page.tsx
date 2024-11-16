@@ -37,7 +37,7 @@ const Main: NextPage = () => {
       </div>
       <div className="snap-center">
         <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
-          Anmeldung
+          Zusage / Absage
           <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
         </div>
         <div className="mx-auto flex max-w-xl">
@@ -45,8 +45,6 @@ const Main: NextPage = () => {
         </div>
       </div>
       <div className="snap-center">
-        {" "}
-        z
         <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
           Übernachtung
           <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />

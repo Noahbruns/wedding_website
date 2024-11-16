@@ -109,7 +109,7 @@ export const Anmeldung = () => {
   };
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && guests.some((i) => i.zusage)) {
       SendConfetti();
     }
   }, [isSuccess]);
@@ -226,7 +226,7 @@ export const Anmeldung = () => {
 
               {index > 0 && (
                 <button
-                  className="flex w-full flex-row items-center justify-center bg-gray-100"
+                  className="mt-2 flex w-full flex-row items-center justify-center bg-gray-100 py-2"
                   onClick={() => removeGuest(index)}
                 >
                   <XMarkIcon className="mr-2 h-5 w-5" /> remove
@@ -253,17 +253,31 @@ export const Anmeldung = () => {
         </>
       )}
       {isPending && (
-        <div className="my-16 flex w-full items-center justify-center">
+        <div className="my-32 flex w-full items-center justify-center">
           <BarLoader />
         </div>
       )}
-      {isSuccess && (
-        <div className="my-16 flex w-full flex-col items-center justify-center">
-          <span className="mb-3 text-2xl font-bold">Angemeldet!</span>
+      {isSuccess &&
+        (guests.some((i) => i.zusage) ? (
+          <div className="my-16 flex w-full flex-col items-center justify-center">
+            <span className="mb-3 text-2xl font-bold">
+              Danke für deine Rückmeldung!
+            </span>
 
-          <span className="text-xl">Wir freuen uns auf Euch!!! 🎉</span>
-        </div>
-      )}
+            <span className="text-xl">Wir freuen uns auf euch!!! 🎉</span>
+          </div>
+        ) : (
+          <div className="my-16 flex w-full flex-col items-center justify-center">
+            <span className="mb-3 text-2xl font-bold">
+              Danke für deine Rückmeldung!
+            </span>
+
+            <span className="text-xl">
+              Schade, dass du nicht dabei sein kannst!
+            </span>
+          </div>
+        ))}
+
       {error && <p>{error.message}</p>}
     </div>
   );
