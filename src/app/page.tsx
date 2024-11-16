@@ -1,13 +1,12 @@
 "use client";
 
-import type { NextPage } from "next";
-import Invitation from "~/images/Invitation.svg";
-import Timeline from "~/images/Timeline.svg";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import { Anmeldung } from "./anmeldung";
+import type { NextPage } from "next";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { env } from "~/env";
+import Invitation from "~/images/Invitation.svg";
+import Timeline from "~/images/Timeline.svg";
+import { Anmeldung } from "./anmeldung";
 
 const Main: NextPage = () => {
   return (

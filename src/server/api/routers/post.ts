@@ -26,6 +26,7 @@ export const anmeldungRouter = createTRPCRouter({
               vegan: z.boolean(),
               hochstuhl: z.boolean(),
               wunsch: z.string(),
+              zusage: z.boolean(),
             }),
           )
           .min(1),
@@ -45,10 +46,11 @@ export const anmeldungRouter = createTRPCRouter({
       }
 
       const values = guests.map(
-        ({ name, nachname, vegan, hochstuhl, wunsch }) => [
+        ({ name, nachname, zusage, vegan, hochstuhl, wunsch }) => [
           timestamp,
           name,
           nachname,
+          zusage,
           vegan,
           hochstuhl,
           wunsch,

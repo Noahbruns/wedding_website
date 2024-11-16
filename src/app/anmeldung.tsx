@@ -1,6 +1,6 @@
 "use client";
 
-import { PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { CheckIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import confetti from "canvas-confetti";
 import { useEffect, useState } from "react";
 import { useReCaptcha } from "next-recaptcha-v3";
@@ -10,6 +10,7 @@ import { api } from "~/trpc/react";
 type Row = {
   name: string;
   nachname: string;
+  zusage: boolean;
   vegan: boolean;
   hochstuhl: boolean;
   wunsch: string;
@@ -22,13 +23,27 @@ export const Anmeldung = () => {
   const { executeRecaptcha } = useReCaptcha();
 
   const [guests, setGuests] = useState<Row[]>([
-    { name: "", nachname: "", vegan: false, hochstuhl: false, wunsch: "" },
+    {
+      name: "",
+      nachname: "",
+      zusage: true,
+      vegan: false,
+      hochstuhl: false,
+      wunsch: "",
+    },
   ]);
 
   const addGuest = () => {
     setGuests([
       ...guests,
-      { name: "", nachname: "", vegan: false, hochstuhl: false, wunsch: "" },
+      {
+        name: "",
+        nachname: "",
+        zusage: true,
+        vegan: false,
+        hochstuhl: false,
+        wunsch: "",
+      },
     ]);
   };
 
@@ -50,6 +65,10 @@ export const Anmeldung = () => {
 
   const handleWunschChange = (index: number, value: string) => {
     updateGuest(index, (state: Row) => ({ ...state, wunsch: value }));
+  };
+
+  const handleZusageChange = (index: number, value: boolean) => {
+    updateGuest(index, (state: Row) => ({ ...state, zusage: value }));
   };
 
   const updateGuest = (index: number, update: (state: Row) => Row) =>
@@ -128,42 +147,82 @@ export const Anmeldung = () => {
                   />
                 </div>
               </div>
-              <div className="flex flex-row flex-wrap gap-4">
-                <div className="flex flex-col gap-2">
-                  <label htmlFor={`vegan-${index}`}>Vegan</label>
-                  <input
+              <div className="flex flex-col gap-2">
+                <label htmlFor={`vegan-${index}`}>Zusage</label>
+
+                <div className="flex flex-row">
+                  <button
                     id={`vegan-${index}`}
-                    type="checkbox"
-                    className="mx-auto"
-                    checked={guest.vegan}
-                    onChange={(e) => handleVeganChange(index, e.target.checked)}
-                  />
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  <label htmlFor={`hochstuhl-${index}`}>Hochstuhl</label>
-                  <input
-                    id={`hochstuhl-${index}`}
-                    type="checkbox"
-                    className="mx-auto"
-                    checked={guest.hochstuhl}
-                    onChange={(e) =>
-                      handleHochstuhlChange(index, e.target.checked)
+                    onClick={() => handleZusageChange(index, true)}
+                    className={
+                      "flex items-center border px-4 py-2 font-bold " +
+                      (guest.zusage
+                        ? "border-black bg-black text-white"
+                        : "border-black bg-white text-black")
                     }
-                  />
-                </div>
-                <div className="flex w-full basis-full flex-col gap-2 md:basis-auto">
-                  <label htmlFor={`wunsch-${index}`}>
-                    Unverträglichkeiten (optional)
-                  </label>
-                  <input
-                    id={`wunsch-${index}`}
-                    className="border border-black px-3 py-2 outline-none"
-                    type="text"
-                    value={guest.wunsch}
-                    onChange={(e) => handleWunschChange(index, e.target.value)}
-                  />
+                  >
+                    <CheckIcon className="mr-2 h-5 w-5" /> Zusage
+                  </button>
+                  <button
+                    id={`vegan-${index}`}
+                    onClick={() => handleZusageChange(index, false)}
+                    className={
+                      "flex items-center border px-4 py-2 font-bold " +
+                      (!guest.zusage
+                        ? "border-black bg-black text-white"
+                        : "border-black bg-white text-black")
+                    }
+                  >
+                    <XMarkIcon className="mr-2 h-5 w-5" />
+                    Absage
+                  </button>
                 </div>
               </div>
+              {guest.zusage && (
+                <>
+                  <div className="my-auto border border-gray-100"></div>
+                  <div className="flex flex-row flex-wrap gap-4">
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor={`vegan-${index}`}>Vegan</label>
+                      <input
+                        id={`vegan-${index}`}
+                        type="checkbox"
+                        className="my-auto"
+                        checked={guest.vegan}
+                        onChange={(e) =>
+                          handleVeganChange(index, e.target.checked)
+                        }
+                      />
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                      <label htmlFor={`hochstuhl-${index}`}>Hochstuhl</label>
+                      <input
+                        id={`hochstuhl-${index}`}
+                        type="checkbox"
+                        className="my-auto"
+                        checked={guest.hochstuhl}
+                        onChange={(e) =>
+                          handleHochstuhlChange(index, e.target.checked)
+                        }
+                      />
+                    </div>
+                    <div className="flex w-full basis-full flex-col gap-2 md:basis-auto">
+                      <label htmlFor={`wunsch-${index}`}>
+                        Unverträglichkeiten (optional)
+                      </label>
+                      <input
+                        id={`wunsch-${index}`}
+                        className="border border-black px-3 py-2 outline-none"
+                        type="text"
+                        value={guest.wunsch}
+                        onChange={(e) =>
+                          handleWunschChange(index, e.target.value)
+                        }
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
 
               {index > 0 && (
                 <button
