@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
+import { ArrowLongRightIcon, FaceSmileIcon } from "@heroicons/react/24/outline";
 import type { NextPage } from "next";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { env } from "~/env";
@@ -19,11 +19,21 @@ const Main: NextPage = () => {
         </div>
       </div>
       <div className="flex snap-center flex-col gap-32 pb-16">
-        <div className="order-first text-right text-xl uppercase leading-loose sm:order-none">
-          Wir laden euch <br />
-          herzlich zu unserer hochzeit
-          <br />
-          am 17. April 2025 ein
+        <div className="order-first flex flex-col gap-6 text-right text-xl leading-loose sm:order-none">
+          <span className="font-bold uppercase">
+            Liebe Familie und Freunde,
+          </span>
+          <span className="uppercase">
+            willkommen auf unserer Hochzeits-Homepage. <br />
+            Wir laden euch herzlich <br />
+            zu unserer hochzeit
+            <br />
+            am <b>17. April 2025</b> ein.
+            <br />
+          </span>
+          <span className="italic">
+            Es wäre schön, wenn ihr mit uns die Korken knallen lasst!
+          </span>
         </div>
       </div>
       <div className="snap-center">
@@ -192,6 +202,25 @@ const Main: NextPage = () => {
             <div className="ml-6 mt-2 flex flex-col font-light">
               <a href="tel:066488868201">Tel: 0664 88 86 8201</a>
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="snap-center">
+        <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
+          Wünsche
+          <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
+        </div>
+        <div className="mx-auto flex max-w-xl text-center">
+          <div className="mb-8 mt-16 font-light italic">
+            <div className="mb-4 flex w-full flex-row items-center justify-center">
+              <span className="shrink-0 font-medium">
+                Eure Anwesenheit ist uns tatsächlich das wertvollste Geschenk!
+              </span>
+              <FaceSmileIcon className="tex ml-2 h-5 w-5 shrink-0" />
+            </div>
+            Solltet ihr uns zusätzlich eine Freude bereiten wollen, freuen wir
+            uns über einen Beitrag zur Hochzeitsreise und zum Start ins
+            Abenteuer Ehe.
           </div>
         </div>
       </div>
