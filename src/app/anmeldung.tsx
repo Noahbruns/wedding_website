@@ -229,7 +229,7 @@ export const Anmeldung = () => {
                   className="mt-2 flex w-full flex-row items-center justify-center bg-gray-100 py-2"
                   onClick={() => removeGuest(index)}
                 >
-                  <XMarkIcon className="mr-2 h-5 w-5" /> remove
+                  <XMarkIcon className="mr-2 h-5 w-5" /> Entfernen
                 </button>
               )}
             </div>

@@ -51,15 +51,33 @@ const Main: NextPage = () => {
         </div>
         <div className="flex max-h-full max-w-full flex-col gap-8 px-6 py-8">
           <div className="mb-4 font-light italic">
-            Wir haben euch schon bei ein paar Hotels Zimmer vorreserviert die
-            ihr gerne buchen könnt. First Come First Serve. Gebt bitte immer an,
-            dass ihr im Kontingent unserer Hochzeit bucht. Die Hotels halten die
-            Plätze bis zum ?. November frei.
+            Wir haben euch in ein paar umliegenden Hotels und Appartments Zimmer
+            vorreserviert, die ihr gerne buchen könnt. First Come, first Serve.
+            Gebt bitte immer an, dass ihr im Kontingent unserer Hochzeit - unter
+            "Marecek" - bucht. Die Unterkünfte halten die Zimmer bis Ende des
+            Jahres frei.
           </div>
 
           <div className="flex flex-col">
             <span className="shrink-0 font-medium uppercase">
-              Seebuchnerhof in Gurten
+              H+ Hotel Ried
+            </span>
+            <div className="ml-6 mt-2 flex flex-col font-light">
+              <span>10km entfernt</span>
+              <span>20 Zimmer vorreserviert</span>
+              <a
+                href="https://www.h-hotels.com/de/hplus/hotels/hplus-hotel-ried"
+                className="hover:underline"
+                target="about/blank"
+              >
+                www.h-hotels.com
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <span className="shrink-0 font-medium uppercase">
+              Sachsenbucherhof in Gurten
             </span>
             <div className="ml-6 mt-2 flex flex-col font-light">
               <span>4km entfernt</span>
@@ -67,6 +85,7 @@ const Main: NextPage = () => {
               <a
                 href="https://www.sachsenbucherhof.com"
                 className="hover:underline"
+                target="about/blank"
               >
                 www.sachsenbucherhof.com
               </a>
@@ -83,6 +102,7 @@ const Main: NextPage = () => {
               <a
                 href="https://www.pension-wenger.at"
                 className="hover:underline"
+                target="about/blank"
               >
                 www.pension-wenger.at
               </a>
@@ -96,7 +116,11 @@ const Main: NextPage = () => {
             <div className="ml-6 mt-2 flex flex-col font-light">
               <span>10km entfernt</span>
               <span>2x Junior Suite und 4x Classic Doppelzimmer</span>
-              <a href="https://www.derkaiserhof.at" className="hover:underline">
+              <a
+                href="https://www.derkaiserhof.at"
+                className="hover:underline"
+                target="about/blank"
+              >
                 www.derkaiserhof.at
               </a>
             </div>
@@ -104,17 +128,69 @@ const Main: NextPage = () => {
 
           <div className="flex flex-col">
             <span className="shrink-0 font-medium uppercase">
-              H+ Hotel Ried
+              Therme Geinberg
             </span>
             <div className="ml-6 mt-2 flex flex-col font-light">
               <span>10km entfernt</span>
-              <span>20 Zimmer vorreserviert</span>
+              <span>Keine Vorreservierung!</span>
               <a
-                href="https://www.h-hotels.com/de/hplus/hotels/hplus-hotel-ried"
+                href="https://www.sparesortgeinberg.at/de"
                 className="hover:underline"
+                target="about/blank"
               >
-                www.h-hotels.com
+                www.sparesortgeinberg.at
               </a>
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <span className="shrink-0 font-medium uppercase">
+              Gratis Camping am Loryhof
+            </span>
+            <div className="ml-6 mt-2 flex flex-col font-light">
+              <span>Auf dem Parkplatz</span>
+              <span>Frühstück um 15€ pro Person</span>
+              <span>Sanitäranlagen nutzbar</span>
+              <span>Bitte beim Loryhof selbständig voranmelden</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="snap-center">
+        <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
+          Taxi Unternehmen
+          <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
+        </div>
+
+        <div className="flex max-h-full max-w-full flex-col gap-8 px-6 py-8">
+          <div className="mb-4 font-light italic">
+            Bei Bedarf könnt ihr eines dieser Unternehmen verständigen.
+          </div>
+
+          <div className="flex flex-col">
+            <span className="shrink-0 font-medium uppercase">
+              Taxi Gerner-St. Martin
+            </span>
+            <div className="ml-6 mt-2 flex flex-col font-light">
+              <a href="tel:06804061136">Tel: 0680 40 611 36</a>
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <span className="shrink-0 font-medium uppercase">
+              Citytaxi Altheim
+            </span>
+            <div className="ml-6 mt-2 flex flex-col font-light">
+              <a href="tel:0772321100">Tel: 07723 21100</a>
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <span className="shrink-0 font-medium uppercase">
+              Taxi Tonninger Ried
+            </span>
+            <div className="ml-6 mt-2 flex flex-col font-light">
+              <a href="tel:066488868201">Tel: 0664 88 86 8201</a>
             </div>
           </div>
         </div>
