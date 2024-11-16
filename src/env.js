@@ -11,6 +11,7 @@ export const env = createEnv({
     SHEET_ID: z.string(),
     SERVICE_ACCOUNT_EMAIL: z.string(),
     SERVICE_ACCOUNT_PRIVATE_KEY: z.string(),
+    RECAPTCHA_SECRET_KEY: z.string(),
   },
 
   /**
@@ -19,7 +20,7 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
-    // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY: z.string(),
   },
 
   /**
@@ -31,6 +32,8 @@ export const env = createEnv({
     SHEET_ID: process.env.SHEET_ID,
     SERVICE_ACCOUNT_EMAIL: process.env.SERVICE_ACCOUNT_EMAIL,
     SERVICE_ACCOUNT_PRIVATE_KEY: process.env.SERVICE_ACCOUNT_PRIVATE_KEY,
+    RECAPTCHA_SECRET_KEY: process.env.RECAPTCHA_SECRET_KEY,
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

@@ -16,26 +16,42 @@ const sheet = google.sheets("v4");
 export const anmeldungRouter = createTRPCRouter({
   anmelden: publicProcedure
     .input(
-      z
-        .array(
-          z.object({
-            name: z.string(),
-            nachname: z.string(),
-            vegan: z.boolean(),
-            wunsch: z.string(),
-          }),
-        )
-        .min(1),
+      z.object({
+        chapta: z.string(),
+        guests: z
+          .array(
+            z.object({
+              name: z.string().min(2),
+              nachname: z.string().min(2),
+              vegan: z.boolean(),
+              wunsch: z.string(),
+            }),
+          )
+          .min(1),
+      }),
     )
-    .mutation(async ({ input: list }) => {
+    .mutation(async ({ input: { chapta, guests } }) => {
       const timestamp = new Date().toISOString();
+      const url = `https://www.google.com/recaptcha/api/siteverify?secret=${env.RECAPTCHA_SECRET_KEY}&response=${chapta}`;
+
+      const request = await fetch(url, {
+        method: "post",
+      });
+      const response = (await request.json()) as { success: boolean };
+
+      console.log(chapta);
+
+      if (!response.success) {
+        throw new Error("Invalid captcha");
+      }
+
       await sheet.spreadsheets.values.append({
         spreadsheetId: SHEET_ID,
         auth: auth,
         range: "Anmeldungen",
         valueInputOption: "RAW",
         requestBody: {
-          values: list.map(({ name, nachname, vegan, wunsch }) => [
+          values: guests.map(({ name, nachname, vegan, wunsch }) => [
             timestamp,
             name,
             nachname,

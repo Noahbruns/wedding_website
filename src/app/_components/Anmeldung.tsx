@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { api } from "~/trpc/react";
-import confetti from "canvas-confetti";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import confetti from "canvas-confetti";
+import { useEffect, useState } from "react";
+import { useReCaptcha } from "next-recaptcha-v3";
 import { BarLoader } from "react-spinners";
+import { api } from "~/trpc/react";
 
 type Row = {
   name: string;
@@ -16,6 +17,8 @@ type Row = {
 export const Anmeldung = () => {
   const { mutate, error, isSuccess, isPending } =
     api.anmeldung.anmelden.useMutation();
+
+  const { executeRecaptcha } = useReCaptcha();
 
   const [guests, setGuests] = useState<Row[]>([
     { name: "", nachname: "", vegan: false, wunsch: "" },
@@ -68,10 +71,17 @@ export const Anmeldung = () => {
     void confetti({ particleCount: 25 });
   };
 
-  const submitGuests = () => {
+  const submitGuests = async () => {
     if (isPending || isSuccess) return;
 
-    mutate(guests);
+    if (!executeRecaptcha) {
+      console.log("Execute recaptcha not yet available");
+      return;
+    }
+
+    const chapta = await executeRecaptcha("form_submit");
+
+    mutate({ chapta, guests });
   };
 
   useEffect(() => {
@@ -127,6 +137,7 @@ export const Anmeldung = () => {
               </>
             ))}
           </div>
+
           <div className="mt-4 flex justify-center gap-4">
             <button
               onClick={addGuest}

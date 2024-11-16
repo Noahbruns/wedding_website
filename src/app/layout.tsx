@@ -11,6 +11,8 @@ const RalewayLatin = Raleway({
 import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import { ReCaptchaProvider } from "next-recaptcha-v3";
+import { env } from "~/env";
 
 export const metadata: Metadata = {
   title: "Wedding Website",
@@ -23,8 +25,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${RalewayLatin.className}`}>
-      <body className="bg-background font-raleway container mx-auto my-5 mt-0 flex w-full snap-y flex-col gap-16 px-4 pb-16 pt-0 text-black">
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+      <body className="font-raleway container mx-auto my-5 mt-0 flex w-full snap-y flex-col gap-16 bg-background px-4 pb-16 pt-0 text-black">
+        <TRPCReactProvider>
+          <ReCaptchaProvider reCaptchaKey={env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}>
+            {children}
+          </ReCaptchaProvider>
+        </TRPCReactProvider>
       </body>
     </html>
   );
