@@ -20,19 +20,18 @@ const Main: NextPage = () => {
       </div>
       <div className="flex snap-center flex-col gap-32 pb-16">
         <div className="order-first flex flex-col gap-6 text-right text-xl leading-loose sm:order-none">
-          <span className="font-bold uppercase">
-            Liebe Familie und Freunde,
-          </span>
+          <span className="uppercase">Liebe Familie und Freunde,</span>
           <span className="uppercase">
-            willkommen auf unserer Hochzeits-Homepage. <br />
+            willkommen auf unserer Hochzeits-Homepage! <br />
             Wir laden euch herzlich <br />
             zu unserer hochzeit
             <br />
-            am <b>17. April 2025</b> ein.
+            am <span className="underline">17. April 2025</span> ein.
             <br />
           </span>
           <span className="italic">
-            Es wäre schön, wenn ihr mit uns die Korken knallen lasst!
+            Kommt hungrig, durstig und in bester Feierlaune <br />- wir haben
+            Essen, Drinks und genug Bühne für all eure Tanzmoves!
           </span>
         </div>
       </div>
