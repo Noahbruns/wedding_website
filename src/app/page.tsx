@@ -3,6 +3,7 @@ import Invitation from "~/images/Invitation.svg";
 import Timeline from "~/images/Timeline.svg";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { Anmeldung } from "./_components/Anmeldung";
 
 const Main: NextPage = () => {
   return (
@@ -29,6 +30,15 @@ const Main: NextPage = () => {
         </div>
         <div className="mx-auto flex max-w-xl">
           <Timeline className="mx-auto" />
+        </div>
+      </div>
+      <div className="snap-center">
+        <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
+          Anmeldung
+          <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
+        </div>
+        <div className="mx-auto flex max-w-xl">
+          <Anmeldung />
         </div>
       </div>
       <div className="snap-center">
