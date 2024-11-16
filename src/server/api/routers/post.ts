@@ -40,11 +40,20 @@ export const anmeldungRouter = createTRPCRouter({
       });
       const response = (await request.json()) as { success: boolean };
 
-      console.log(chapta);
-
       if (!response.success) {
         throw new Error("Invalid captcha");
       }
+
+      const values = guests.map(
+        ({ name, nachname, vegan, hochstuhl, wunsch }) => [
+          timestamp,
+          name,
+          nachname,
+          vegan,
+          hochstuhl,
+          wunsch,
+        ],
+      );
 
       await sheet.spreadsheets.values.append({
         spreadsheetId: SHEET_ID,
@@ -52,15 +61,14 @@ export const anmeldungRouter = createTRPCRouter({
         range: "Anmeldungen",
         valueInputOption: "RAW",
         requestBody: {
-          values: guests.map(({ name, nachname, vegan, hochstuhl, wunsch }) => [
-            timestamp,
-            name,
-            nachname,
-            vegan,
-            hochstuhl,
-            wunsch,
-          ]),
+          values,
         },
       });
+
+      const text = values.map((i) => i.join(",")).join("\n");
+
+      await fetch(
+        `https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage?chat_id=312446586&text=Neue Anmeldung ${text}`,
+      );
     }),
 });

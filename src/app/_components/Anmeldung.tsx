@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { useReCaptcha } from "next-recaptcha-v3";
 import { BarLoader } from "react-spinners";
 import { api } from "~/trpc/react";
-import Checkbox from "react-simple-checkbox";
 
 type Row = {
   name: string;
@@ -132,33 +131,23 @@ export const Anmeldung = () => {
               <div className="flex flex-row flex-wrap gap-4">
                 <div className="flex flex-col gap-2">
                   <label htmlFor={`vegan-${index}`}>Vegan</label>
-                  <Checkbox
+                  <input
                     id={`vegan-${index}`}
                     type="checkbox"
                     className="mx-auto"
-                    tickAnimationDuration={150}
-                    backAnimationDuration={80}
-                    size={2}
-                    color="#000"
                     checked={guest.vegan}
-                    onChange={(isChecked: boolean) =>
-                      handleVeganChange(index, isChecked)
-                    }
+                    onChange={(e) => handleVeganChange(index, e.target.checked)}
                   />
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <label htmlFor={`vegan-${index}`}>Hochstuhl</label>
-                  <Checkbox
-                    id={`vegan-${index}`}
+                  <label htmlFor={`hochstuhl-${index}`}>Hochstuhl</label>
+                  <input
+                    id={`hochstuhl-${index}`}
                     type="checkbox"
                     className="mx-auto"
-                    tickAnimationDuration={150}
-                    backAnimationDuration={80}
-                    size={2}
-                    color="#000"
                     checked={guest.hochstuhl}
-                    onChange={(isChecked: boolean) =>
-                      handleHochstuhlChange(index, isChecked)
+                    onChange={(e) =>
+                      handleHochstuhlChange(index, e.target.checked)
                     }
                   />
                 </div>

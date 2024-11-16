@@ -5,7 +5,7 @@ import Invitation from "~/images/Invitation.svg";
 import Timeline from "~/images/Timeline.svg";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { Anmeldung } from "./_components/Anmeldung";
+import { Anmeldung } from "./_components/anmeldung";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { env } from "~/env";
 
@@ -46,6 +46,8 @@ const Main: NextPage = () => {
         </div>
       </div>
       <div className="snap-center">
+        {" "}
+        z
         <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
           Übernachtung
           <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />

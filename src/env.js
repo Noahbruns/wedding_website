@@ -12,6 +12,7 @@ export const env = createEnv({
     SERVICE_ACCOUNT_EMAIL: z.string(),
     SERVICE_ACCOUNT_PRIVATE_KEY: z.string(),
     RECAPTCHA_SECRET_KEY: z.string(),
+    TELEGRAM_TOKEN: z.string(),
   },
 
   /**
@@ -34,6 +35,7 @@ export const env = createEnv({
     SERVICE_ACCOUNT_PRIVATE_KEY: process.env.SERVICE_ACCOUNT_PRIVATE_KEY,
     RECAPTCHA_SECRET_KEY: process.env.RECAPTCHA_SECRET_KEY,
     NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+    TELEGRAM_TOKEN: process.env.TELEGRAM_TOKEN,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
