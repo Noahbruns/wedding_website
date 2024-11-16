@@ -24,8 +24,8 @@ export const anmeldungRouter = createTRPCRouter({
               name: z.string().min(2),
               nachname: z.string().min(2),
               vegan: z.boolean(),
+              hochstuhl: z.boolean(),
               wunsch: z.string(),
-              hochstuhl: z.string(),
             }),
           )
           .min(1),
