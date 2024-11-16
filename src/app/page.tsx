@@ -1,13 +1,17 @@
+"use client";
+
 import type { NextPage } from "next";
 import Invitation from "~/images/Invitation.svg";
 import Timeline from "~/images/Timeline.svg";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Anmeldung } from "./_components/Anmeldung";
+import { ReCaptchaProvider } from "next-recaptcha-v3";
+import { env } from "~/env";
 
 const Main: NextPage = () => {
   return (
-    <>
+    <ReCaptchaProvider reCaptchaKey={env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}>
       <div className="snap-center sm:h-screen">
         <div className="flex h-full">
           <div className="w-full">
@@ -116,7 +120,7 @@ const Main: NextPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </ReCaptchaProvider>
   );
 };
 

@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 import { useReCaptcha } from "next-recaptcha-v3";
 import { BarLoader } from "react-spinners";
 import { api } from "~/trpc/react";
+import Checkbox from "react-simple-checkbox";
 
 type Row = {
   name: string;
   nachname: string;
   vegan: boolean;
+  hochstuhl: boolean;
   wunsch: string;
 };
 
@@ -21,13 +23,13 @@ export const Anmeldung = () => {
   const { executeRecaptcha } = useReCaptcha();
 
   const [guests, setGuests] = useState<Row[]>([
-    { name: "", nachname: "", vegan: false, wunsch: "" },
+    { name: "", nachname: "", vegan: false, hochstuhl: false, wunsch: "" },
   ]);
 
   const addGuest = () => {
     setGuests([
       ...guests,
-      { name: "", nachname: "", vegan: false, wunsch: "" },
+      { name: "", nachname: "", vegan: false, hochstuhl: false, wunsch: "" },
     ]);
   };
 
@@ -41,6 +43,10 @@ export const Anmeldung = () => {
 
   const handleVeganChange = (index: number, value: boolean) => {
     updateGuest(index, (state: Row) => ({ ...state, vegan: value }));
+  };
+
+  const handleHochstuhlChange = (index: number, value: boolean) => {
+    updateGuest(index, (state: Row) => ({ ...state, hochstuhl: value }));
   };
 
   const handleWunschChange = (index: number, value: string) => {
@@ -94,61 +100,104 @@ export const Anmeldung = () => {
     <div className="mt-8 flex w-full flex-col gap-4">
       {!isSuccess && !isPending && (
         <>
-          <div className="col grid grid-cols-[minmax(0,_2fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,10px)] gap-4">
-            <div>Vorname</div>
-            <div>Nachname</div>
-            <div>Vegan</div>
-            <div>Unverträglichkeiten</div>
-            <div></div>
-            {guests.map((guest: Row, index) => (
-              <>
-                <input
-                  className="border border-black px-3 py-2 outline-none"
-                  type="text"
-                  value={guest.name}
-                  onChange={(e) => handleNameChange(index, e.target.value)}
-                />
-                <input
-                  className="border border-black px-3 py-2 outline-none"
-                  type="text"
-                  value={guest.nachname}
-                  onChange={(e) => handleNachnameChange(index, e.target.value)}
-                />
-                <div className="flex h-full items-center justify-center">
+          {guests.map((guest: Row, index) => (
+            <div
+              key={index}
+              className="flex w-full flex-col gap-4 bg-white p-4"
+            >
+              <div className="flex w-full flex-row gap-4">
+                <div className="flex w-full flex-col gap-2">
+                  <label htmlFor={`name-${index}`}>Vorname</label>
                   <input
-                    type="checkbox"
-                    checked={guest.vegan}
-                    onChange={(e) => handleVeganChange(index, e.target.checked)}
+                    id={`name-${index}`}
+                    className="w-full border border-black px-3 py-2 outline-none"
+                    type="text"
+                    value={guest.name}
+                    onChange={(e) => handleNameChange(index, e.target.value)}
                   />
                 </div>
-                <input
-                  className="border border-black px-3 py-2 outline-none"
-                  type="text"
-                  value={guest.wunsch}
-                  onChange={(e) => handleWunschChange(index, e.target.value)}
-                />
-                {index > 0 ? (
-                  <button onClick={() => removeGuest(index)}>
-                    <XMarkIcon className="h-5 w-5" />
-                  </button>
-                ) : (
-                  <div />
-                )}
-              </>
-            ))}
-          </div>
+                <div className="flex w-full flex-col gap-2">
+                  <label htmlFor={`nachname-${index}`}>Nachname</label>
+                  <input
+                    id={`nachname-${index}`}
+                    className="w-full border border-black px-3 py-2 outline-none"
+                    type="text"
+                    value={guest.nachname}
+                    onChange={(e) =>
+                      handleNachnameChange(index, e.target.value)
+                    }
+                  />
+                </div>
+              </div>
+              <div className="flex flex-row flex-wrap gap-4">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor={`vegan-${index}`}>Vegan</label>
+                  <Checkbox
+                    id={`vegan-${index}`}
+                    type="checkbox"
+                    className="mx-auto"
+                    tickAnimationDuration={150}
+                    backAnimationDuration={80}
+                    size={2}
+                    color="#000"
+                    checked={guest.vegan}
+                    onChange={(isChecked: boolean) =>
+                      handleVeganChange(index, isChecked)
+                    }
+                  />
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <label htmlFor={`vegan-${index}`}>Hochstuhl</label>
+                  <Checkbox
+                    id={`vegan-${index}`}
+                    type="checkbox"
+                    className="mx-auto"
+                    tickAnimationDuration={150}
+                    backAnimationDuration={80}
+                    size={2}
+                    color="#000"
+                    checked={guest.hochstuhl}
+                    onChange={(isChecked: boolean) =>
+                      handleHochstuhlChange(index, isChecked)
+                    }
+                  />
+                </div>
+                <div className="flex w-full basis-full flex-col gap-2 md:basis-auto">
+                  <label htmlFor={`wunsch-${index}`}>
+                    Unverträglichkeiten (optional)
+                  </label>
+                  <input
+                    id={`wunsch-${index}`}
+                    className="border border-black px-3 py-2 outline-none"
+                    type="text"
+                    value={guest.wunsch}
+                    onChange={(e) => handleWunschChange(index, e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {index > 0 && (
+                <button
+                  className="flex w-full flex-row items-center justify-center bg-gray-100"
+                  onClick={() => removeGuest(index)}
+                >
+                  <XMarkIcon className="mr-2 h-5 w-5" /> remove
+                </button>
+              )}
+            </div>
+          ))}
 
           <div className="mt-4 flex justify-center gap-4">
             <button
               onClick={addGuest}
-              className="flex items-center rounded border border-white bg-white px-4 py-2 font-bold text-black hover:border-gray-400 hover:bg-gray-100"
+              className="flex items-center border border-white bg-white px-4 py-2 font-bold text-black hover:border-gray-400 hover:bg-gray-100"
             >
               <PlusIcon className="mr-2 h-5 w-5" />
               Gast hinzufügen
             </button>
             <button
               onClick={submitGuests}
-              className="rounded bg-black px-4 py-2 font-bold text-white transition-all duration-300 hover:scale-105"
+              className="bg-black px-4 py-2 font-bold text-white transition-all duration-300 hover:scale-105"
             >
               Anmelden
             </button>
