@@ -10,3 +10,37 @@ svg {
 .grecaptcha-badge {
   visibility: hidden !important;
 }
+
+input {
+  -webkit-appearance: none;
+}
+
+input[type="checkbox"] {
+  width: 1.5rem;
+  height: 1.5rem;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+
+
+input[type="checkbox"]:checked {
+  background-color: #000;
+  border: 1px solid #000;
+}
+
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 0.25rem;
+  width: 0.4rem;
+  height:  0.8rem;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  border-color: #fff;
+}

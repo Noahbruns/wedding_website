@@ -187,19 +187,19 @@ export const Anmeldung = () => {
                       <input
                         id={`vegan-${index}`}
                         type="checkbox"
-                        className="my-auto"
+                        className="my-auto ml-2"
                         checked={guest.vegan}
                         onChange={(e) =>
                           handleVeganChange(index, e.target.checked)
                         }
                       />
                     </div>
-                    <div className="flex flex-col items-center gap-2">
+                    <div className="flex flex-col gap-2">
                       <label htmlFor={`hochstuhl-${index}`}>Hochstuhl</label>
                       <input
                         id={`hochstuhl-${index}`}
                         type="checkbox"
-                        className="my-auto"
+                        className="my-auto ml-2"
                         checked={guest.hochstuhl}
                         onChange={(e) =>
                           handleHochstuhlChange(index, e.target.checked)
@@ -208,7 +208,8 @@ export const Anmeldung = () => {
                     </div>
                     <div className="flex w-full basis-full flex-col gap-2 md:basis-auto">
                       <label htmlFor={`wunsch-${index}`}>
-                        Unverträglichkeiten (optional)
+                        Unverträglichkeiten{" "}
+                        <span className="italic">(optional)</span>
                       </label>
                       <input
                         id={`wunsch-${index}`}
@@ -260,7 +261,7 @@ export const Anmeldung = () => {
       {isSuccess &&
         (guests.some((i) => i.zusage) ? (
           <div className="my-16 flex w-full flex-col items-center justify-center">
-            <span className="mb-3 text-2xl font-bold">
+            <span className="mb-3 text-2xl uppercase">
               Danke für deine Rückmeldung!
             </span>
 
@@ -268,7 +269,7 @@ export const Anmeldung = () => {
           </div>
         ) : (
           <div className="my-16 flex w-full flex-col items-center justify-center">
-            <span className="mb-3 text-2xl font-bold">
+            <span className="mb-3 text-2xl uppercase">
               Danke für deine Rückmeldung!
             </span>
 
