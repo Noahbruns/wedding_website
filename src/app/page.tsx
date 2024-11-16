@@ -5,7 +5,7 @@ import Invitation from "~/images/Invitation.svg";
 import Timeline from "~/images/Timeline.svg";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { Anmeldung } from "./_components/anmeldung";
+import { Anmeldung } from "./anmeldung";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { env } from "~/env";
 
