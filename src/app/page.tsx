@@ -18,7 +18,7 @@ const Main: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="flex snap-center flex-col gap-32 pb-16">
+      <div className="ml-auto max-w-xl snap-center flex-col gap-32 pb-16">
         <div className="order-first flex flex-col gap-6 text-right text-xl leading-loose sm:order-none">
           <span className="uppercase">Liebe Familie und Freunde,</span>
           <span className="uppercase">
@@ -30,7 +30,7 @@ const Main: NextPage = () => {
             <br />
           </span>
           <span className="italic">
-            Kommt hungrig, durstig und in bester Feierlaune <br />- wir haben
+            Kommt hungrig, durstig und in bester Feierlaune <wbr />- wir haben
             Essen, Drinks und genug Bühne für all eure Tanzmoves!
           </span>
         </div>
@@ -64,7 +64,7 @@ const Main: NextPage = () => {
             vorreserviert, die ihr gerne buchen könnt. First Come, first Serve.
             Gebt bitte immer an, dass ihr im Kontingent unserer Hochzeit - unter
             &quot;Marecek&quot; - bucht. Die Unterkünfte halten die Zimmer bis
-            Ende des Jahres frei.
+            Ende des Jahres fre.i
           </div>
 
           <div className="flex flex-col">
@@ -211,11 +211,9 @@ const Main: NextPage = () => {
         </div>
         <div className="mx-auto flex max-w-xl text-center">
           <div className="mb-8 mt-16 font-light italic">
-            <div className="mb-4 flex w-full flex-row items-center justify-center">
-              <span className="shrink-0 font-medium">
-                Eure Anwesenheit ist uns tatsächlich das wertvollste Geschenk!
-              </span>
-              <FaceSmileIcon className="tex ml-2 h-5 w-5 shrink-0" />
+            <div className="mb-4 w-full">
+              Eure Anwesenheit ist uns tatsächlich das wertvollste Geschenk!
+              <FaceSmileIcon className="mb-1 ml-2 inline-flex h-5 w-5" />
             </div>
             Solltet ihr uns zusätzlich eine Freude bereiten wollen, freuen wir
             uns über einen Beitrag zur Hochzeitsreise und zum Start ins
