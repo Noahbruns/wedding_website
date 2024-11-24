@@ -22,9 +22,9 @@ const Main: NextPage = () => {
         <div className="order-first flex flex-col gap-6 text-right text-xl leading-loose sm:order-none">
           <span className="uppercase">Liebe Familie und Freunde,</span>
           <span className="uppercase">
-            willkommen auf unserer Hochzeits-Homepage! <br />
+            willkommen auf unserer Homepage! <br />
             Wir laden euch herzlich <br />
-            zu unserer hochzeit
+            zu unserer Hochzeit
             <br />
             am <span className="underline">17. April 2025</span> ein.
             <br />
