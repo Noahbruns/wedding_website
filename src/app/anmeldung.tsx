@@ -16,6 +16,18 @@ type Row = {
   wunsch: string;
 };
 
+function trimObjectKeys<T extends Record<string, unknown>>(obj: T): T {
+  const newObj: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (typeof value == "string") {
+      newObj[key] = value.trim();
+    } else {
+      newObj[key] = value;
+    }
+  }
+  return newObj as T;
+}
+
 export const Anmeldung = () => {
   const { mutate, error, isSuccess, isPending } =
     api.anmeldung.anmelden.useMutation();
@@ -105,7 +117,7 @@ export const Anmeldung = () => {
 
     const chapta = await executeRecaptcha("form_submit");
 
-    mutate({ chapta, guests });
+    mutate({ chapta, guests: guests.map(trimObjectKeys) });
   };
 
   useEffect(() => {
