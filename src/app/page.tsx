@@ -64,7 +64,7 @@ const Main: NextPage = () => {
             vorreserviert, die ihr gerne buchen könnt. First Come, first Serve.
             Gebt bitte immer an, dass ihr im Kontingent unserer Hochzeit - unter
             &quot;Marecek&quot; - bucht. Die Unterkünfte halten die Zimmer bis
-            Ende des Jahres fre.i
+            Ende des Jahres frei.
           </div>
 
           <div className="flex flex-col">
