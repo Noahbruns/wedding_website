@@ -158,10 +158,12 @@ const Main: NextPage = () => {
 
           <div className="flex flex-col">
             <span className="shrink-0 font-medium uppercase">
-              Gratis Camping am Loryhof
+              Camping am Loryhof
             </span>
             <div className="ml-6 mt-2 flex flex-col font-light">
-              <span>Auf dem Parkplatz</span>
+              <span>
+                Gratis übernachten auf dem Parkplatz mit eigenem Auto/Bus
+              </span>
               <span>Frühstück um 15€ pro Person</span>
               <span>Sanitäranlagen nutzbar</span>
               <span>Bitte beim Loryhof selbständig voranmelden</span>
