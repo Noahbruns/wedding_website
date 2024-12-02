@@ -73,7 +73,11 @@ const Main: NextPage = () => {
             </span>
             <div className="ml-6 mt-2 flex flex-col font-light">
               <span>10km entfernt</span>
-              <span>20 Zimmer vorreserviert</span>
+              <span>19 Zimmer vorreserviert</span>
+              <span>
+                Codewort: <i>Hochzeit Bruns und Marecek</i>
+              </span>
+              <span>Stronierung bis 16.1.2025 kostenfrei</span>
               <a
                 href="https://www.h-hotels.com/de/hplus/hotels/hplus-hotel-ried"
                 className="hover:underline"
@@ -90,7 +94,7 @@ const Main: NextPage = () => {
             </span>
             <div className="ml-6 mt-2 flex flex-col font-light">
               <span>4km entfernt</span>
-              <span>1x Doppelzimmer, 2x 3-Bettzimmer und 2 Einzelzimmer</span>
+              <span>3x Doppelzimmer, 2x Einzelzimmer</span>
               <a
                 href="https://www.sachsenbucherhof.com"
                 className="hover:underline"
@@ -103,11 +107,11 @@ const Main: NextPage = () => {
 
           <div className="flex flex-col">
             <span className="shrink-0 font-medium uppercase">
-              Pension Wagner in Kirchheim
+              Pension Wenger in Kirchheim
             </span>
             <div className="ml-6 mt-2 flex flex-col font-light">
               <span>5km entfernt</span>
-              <span>1x Doppelzimmer, 2x 3-Bettzimmer und 2 Einzelzimmer</span>
+              <span>3x Doppelzimmer, 2x Einzelzimmer</span>
               <a
                 href="https://www.pension-wenger.at"
                 className="hover:underline"
