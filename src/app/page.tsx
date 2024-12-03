@@ -94,7 +94,9 @@ const Main: NextPage = () => {
             </span>
             <div className="ml-6 mt-2 flex flex-col font-light">
               <span>4km entfernt</span>
-              <span>3x Doppelzimmer, 2x Einzelzimmer</span>
+              <span>
+                2x Doppelzimmer, 2x Dreibettzimmer, 2x 4+ Betten Zimmer
+              </span>
               <a
                 href="https://www.sachsenbucherhof.com"
                 className="hover:underline"
