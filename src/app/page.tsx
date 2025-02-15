@@ -77,7 +77,7 @@ const Main: NextPage = () => {
               <span>
                 Codewort: <i>Hochzeit Bruns und Marecek</i>
               </span>
-              <span>Stronierung bis 16.1.2025 kostenfrei</span>
+              <span>Stornierung bis 16.1.2025 kostenfrei</span>
               <a
                 href="https://www.h-hotels.com/de/hplus/hotels/hplus-hotel-ried"
                 className="hover:underline"
