@@ -6,7 +6,9 @@ import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { env } from "~/env";
 import Invitation from "~/images/Invitation.svg";
 import Timeline from "~/images/Timeline.svg";
+import Map from "~/images/MAP.svg";
 import { Anmeldung } from "./anmeldung";
+import Obfuscate from "react-obfuscate";
 
 const Main: NextPage = () => {
   return (
@@ -30,9 +32,55 @@ const Main: NextPage = () => {
             <br />
           </span>
           <span className="italic">
-            Kommt hungrig, durstig und in bester Feierlaune <wbr />- wir haben
-            Essen, Drinks und genug Bühne für all eure Tanzmoves!
+            Kommt in bester Feierlaune <wbr />- wir haben Essen, Drinks und
+            genug Bühne für all eure Tanzmoves!
           </span>
+        </div>
+      </div>
+      <div className="snap-center">
+        <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
+          Infos
+          <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
+        </div>
+        <div className="mt-8 flex">
+          <ul className="ml-6 flex list-disc flex-col gap-4">
+            <li>
+              Essen gibt es am Lorryhof ab ca. 15:00 mit Snacks zur Agape. Davor
+              wird es kleine Wegzerrung bei der Kirche geben. Kommt also nicht
+              völlig hungrig aber hebt euch auf jeden fall genug Hunger für den
+              Loryhof auf!
+            </li>
+            <li>
+              Wenn ihr einen Programmbeitrag machen wollt, meldet uns bei
+              unseren Trauzeugen <span className="font-bold">David </span> (
+              <Obfuscate
+                style={{ display: "inline-block" }}
+                tel="+43 650 5234939"
+              />
+              ) & <span className="font-bold">Ursi</span> (
+              <Obfuscate
+                style={{ display: "inline-block" }}
+                tel="+43 650 9193831"
+              />
+              )
+            </li>
+            <li>Nichts und niemand wird gestohlen!</li>
+          </ul>
+        </div>
+      </div>
+      <div className="snap-center">
+        <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
+          Anreise
+          <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
+        </div>
+        <div className="mt-8 flex">
+          <a
+            href="https://maps.app.goo.gl/B3fZDyAZJM8iBhwAA"
+            target="about/blank"
+            className="h-full w-full"
+          >
+            <Map className="h-full w-full" />
+          </a>
         </div>
       </div>
       <div className="snap-center">
