@@ -6,7 +6,7 @@ import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { env } from "~/env";
 import Invitation from "~/images/Invitation.svg";
 import Timeline from "~/images/Timeline.svg";
-import Map from "~/images/MAP.svg";
+import Map from "~/images/MAP.min.svg";
 import { Anmeldung } from "./anmeldung";
 import Obfuscate from "react-obfuscate";
 
@@ -70,6 +70,9 @@ const Main: NextPage = () => {
               )
             </li>
             <li>Eine Bitte: Nichts und niemand wird gestohlen 😊</li>
+            <li>
+              WCs gibt es im Nebengebäude (Gemeindesaal) hinter der Kirche.
+            </li>
           </ul>
         </div>
       </div>
