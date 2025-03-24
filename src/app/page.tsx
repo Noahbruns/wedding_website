@@ -45,14 +45,19 @@ const Main: NextPage = () => {
         <div className="mt-8 flex">
           <ul className="ml-6 flex list-disc flex-col gap-4">
             <li>
-              Essen gibt es am Lorryhof ab ca. 15:00 mit Snacks zur Agape. Davor
-              wird es kleine Wegzerrung bei der Kirche geben. Kommt also nicht
-              völlig hungrig aber hebt euch auf jeden fall genug Hunger für den
-              Loryhof auf!
+              Essen gibt es am Loryhof ab ca. 15:00 mit kleinen Pizzen zur
+              Agape. Davor wird es ein paar Müsliriegel bei der Kirche geben.
+              Kommt also nicht völlig hungrig, aber hebt euch genug Appetit auf!
             </li>
             <li>
-              Wenn ihr einen Programmbeitrag machen wollt, meldet uns bei
-              unseren Trauzeugen <span className="font-bold">David </span> (
+              Für Kinder gibt es in der Kirche bei Bedarf einen eigenen Raum mit
+              Blick auf den Altar.
+            </li>
+            <li>
+              Wenn ihr einen Programmbeitrag machen wollt, meldet euch bis Ende
+              März bei unseren Trauzeugen
+              <br />
+              <span className="font-bold">David </span> (
               <Obfuscate
                 style={{ display: "inline-block" }}
                 tel="+43 650 5234939"
@@ -64,7 +69,7 @@ const Main: NextPage = () => {
               />
               )
             </li>
-            <li>Nichts und niemand wird gestohlen!</li>
+            <li>Eine Bitte: Nichts und niemand wird gestohlen 😊</li>
           </ul>
         </div>
       </div>
