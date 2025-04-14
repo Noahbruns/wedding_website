@@ -294,13 +294,13 @@ export default Main;
 
 function UploadFotos() {
   const currentDate = new Date();
-  const targetDate = new Date("2025-04-17");
+  const targetDate = new Date("2025-04-16");
 
   // Set hours, minutes, seconds, and milliseconds to 0 for accurate date comparison
   currentDate.setHours(0, 0, 0, 0);
   targetDate.setHours(0, 0, 0, 0);
 
-  if (currentDate.getTime() === targetDate.getTime()) {
+  if (currentDate.getTime() > targetDate.getTime()) {
     return (
       <div>
         <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
