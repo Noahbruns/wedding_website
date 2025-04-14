@@ -37,6 +37,7 @@ const Main: NextPage = () => {
           </span>
         </div>
       </div>
+      <UploadFotos />
       <div className="snap-center">
         <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
           Infos
@@ -290,3 +291,40 @@ const Main: NextPage = () => {
 };
 
 export default Main;
+
+function UploadFotos() {
+  const currentDate = new Date();
+  const targetDate = new Date("2025-04-14");
+
+  // Set hours, minutes, seconds, and milliseconds to 0 for accurate date comparison
+  currentDate.setHours(0, 0, 0, 0);
+  targetDate.setHours(0, 0, 0, 0);
+
+  if (currentDate.getTime() === targetDate.getTime()) {
+    return (
+      <div>
+        <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
+          BILDER
+          <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
+        </div>
+        <div className="my-4 flex flex-col items-center">
+          <span className="mb-3 text-6xl">📸</span>
+          <div className="mb-12 text-center text-2xl font-semibold uppercase">
+            Wir freuen uns auf deine Schnappschüsse
+          </div>
+          <div>
+            <a
+              className="rounded-md bg-black px-6 py-4 text-2xl font-bold text-white"
+              href="https://noahscloud.quickconnect.to/sharing/TJI014yX5"
+              target="about:blank"
+            >
+              UPLOAD
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return null;
+  }
+}
