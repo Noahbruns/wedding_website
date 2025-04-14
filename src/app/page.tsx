@@ -243,15 +243,6 @@ const Main: NextPage = () => {
 
           <div className="flex flex-col">
             <span className="shrink-0 font-medium uppercase">
-              Taxi Gerner-St. Martin
-            </span>
-            <div className="ml-6 mt-2 flex flex-col font-light">
-              <a href="tel:06804061136">Tel: 0680 40 611 36</a>
-            </div>
-          </div>
-
-          <div className="flex flex-col">
-            <span className="shrink-0 font-medium uppercase">
               Citytaxi Altheim
             </span>
             <div className="ml-6 mt-2 flex flex-col font-light">
