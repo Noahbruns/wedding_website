@@ -6,6 +6,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "sync": "npx next-video sync",
     "lint": "next lint",
     "start": "next start"
   },
@@ -23,6 +24,7 @@
     "googleapis": "^105.0.0",
     "next": "^14.2.4",
     "next-recaptcha-v3": "^1.5.0",
+    "next-video": "^2.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-obfuscate": "^3.7.0",

@@ -9,7 +9,7 @@ const PasswordScreen = () => {
       <input
         onInput={(e) => {
           e.currentTarget.value = e.currentTarget.value.toUpperCase();
-          document.cookie = "pw=" + e.currentTarget.value;
+          document.cookie = "pw=" + e.currentTarget.value + ";max-age=604800";
         }}
         placeholder="PASSWORT"
         className="rounded-md bg-white p-3 text-center text-black outline-none"
