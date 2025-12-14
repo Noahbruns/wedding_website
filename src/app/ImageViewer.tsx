@@ -24,8 +24,6 @@ export default function ImageViewer({
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const touchStartX = useRef(0);
-
   // Helper to get the full-size URL
   const getFullsizeUrl = (previewUrl: string): string => {
     return previewUrl.replace("/preview/", "/fullsize/");
@@ -85,24 +83,6 @@ export default function ImageViewer({
     console.error("Failed to load full-size image:", currentImageUrl);
   };
 
-  // --- Touch/Swipe Handlers (same as before) ---
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0]!.clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    const touchEndX = e.changedTouches[0]!.clientX;
-    const deltaX = touchEndX - touchStartX.current;
-
-    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
-      if (deltaX < 0) {
-        handleNext();
-      } else {
-        handlePrevious();
-      }
-    }
-  };
-
   // --- Keyboard Navigation (same as before) ---
   useEffect(() => {
     if (selectedIndex === null) {
@@ -145,8 +125,6 @@ export default function ImageViewer({
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
           onClick={handleClose}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
         >
           {/* Modal Content Container */}
           <div
