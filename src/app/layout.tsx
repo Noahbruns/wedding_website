@@ -18,7 +18,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { cookies } from "next/headers";
 import PasswordScreen from "./pw";
 
-const PW = "BRUNS46";
+const PW = "TOBLERONE17";
 
 export const metadata: Metadata = {
   title: "Wedding Website",
