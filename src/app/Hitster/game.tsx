@@ -106,7 +106,6 @@ export default function HitsterGame() {
       const first = shuffled.pop();
       setCurrentCard(first ?? null);
       setDeck([...shuffled]);
-      setGameState("playing");
     }
   }, []);
 
@@ -177,6 +176,23 @@ export default function HitsterGame() {
         alt="HITSTER Logo"
         className="fixed left-0 right-0 -z-20 w-56 opacity-50"
       />
+
+      {/* --- OBERER BEREICH: Welcome --- */}
+      {gameState === "welcome" && (
+        <div className="mt-10 flex flex-col gap-4 text-center">
+          <h2 className="text-3xl font-bold text-yellow-400">Willkommen</h2>
+          <div className="text-lg text-yellow-400">
+            Ihr habt uns herausgefordert, jetzt fordern wir euch heraus!
+          </div>
+
+          <button
+            onClick={() => setGameState("playing")}
+            className="mx-auto rounded bg-white px-6 py-2 font-bold text-black hover:bg-gray-200"
+          >
+            Los gehts!
+          </button>
+        </div>
+      )}
 
       {/* --- OBERER BEREICH: VIDEO & STEUERUNG --- */}
       <div className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center p-4">
