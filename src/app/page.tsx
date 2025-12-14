@@ -79,7 +79,7 @@ const Content: NextPage = () => {
               </div>
             </div>
           </a>
-          <a target="about/blank" href="video">
+          <a target="about/blank" href="/video">
             <div className="group relative cursor-pointer">
               <Image
                 src={HighlightImage}
@@ -93,10 +93,7 @@ const Content: NextPage = () => {
               </div>
             </div>
           </a>
-          <a
-            target="about/blank"
-            href="https://u0n02v8j5oowozn9.public.blob.vercel-storage.com/videos/theCLICKwedding_Daniela%26Noah_Hochzeitsfilm-6A4RRp15SmVFJi5iioAySAfGmZS35y.mov"
-          >
+          <a target="about/blank" href="/film">
             <div className="group relative cursor-pointer">
               <Image
                 src={FilmImage}
