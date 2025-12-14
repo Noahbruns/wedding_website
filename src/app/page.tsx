@@ -10,6 +10,8 @@ import IsabellaImage from "~/images/isabella.jpg";
 import NoahCamImage from "~/images/noah-cam.jpg";
 import LSImage from "~/images/ls.jpeg";
 import FilmImage from "~/images/film.gif";
+import FotoboxImage from "~/images/fotobox.jpg";
+import HitsterImage from "~/images/hitster.png";
 import HighlightImage from "~/images/highlight.gif";
 
 const Content: NextPage = () => {
@@ -79,30 +81,17 @@ const Content: NextPage = () => {
               </div>
             </div>
           </a>
-          <a target="about/blank" href="/video">
+
+          <a href="/Fotobox">
             <div className="group relative cursor-pointer">
               <Image
-                src={HighlightImage}
+                src={FotoboxImage}
                 className="w-full rounded-2xl brightness-50 transition-all group-hover:brightness-90"
                 alt="Bilder der Fotografin"
               />
               <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
                 <span className="my-auto text-center text-2xl font-semibold text-white transition-all group-hover:scale-110">
-                  HIGHLIGHT VIDEO
-                </span>
-              </div>
-            </div>
-          </a>
-          <a target="about/blank" href="/film">
-            <div className="group relative cursor-pointer">
-              <Image
-                src={FilmImage}
-                className="w-full rounded-2xl brightness-50 transition-all group-hover:brightness-90"
-                alt="Bilder der Fotografin"
-              />
-              <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
-                <span className="my-auto text-center text-2xl font-semibold text-white transition-all group-hover:scale-110">
-                  HOCHZEITS FILM
+                  Fotobox
                 </span>
               </div>
             </div>
@@ -119,43 +108,50 @@ const Content: NextPage = () => {
               </span>
             </div>
           </div>
+          <a href="/Hitster">
+            <div className="group relative cursor-pointer">
+              <Image
+                src={HitsterImage}
+                className="w-full rounded-2xl brightness-90 transition-all group-hover:brightness-110"
+                alt="Bilder der Fotografin"
+              />
+            </div>
+          </a>
+        </div>
+      </div>
+      <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
+        VIDEOS
+        <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
+      </div>
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <a target="about/blank" href="/video">
           <div className="group relative cursor-pointer">
             <Image
-              src={IsabellaImage}
-              className="rounded-2xl brightness-50 transition-all group-hover:brightness-90"
+              src={HighlightImage}
+              className="w-full rounded-2xl brightness-50 transition-all group-hover:brightness-90"
               alt="Bilder der Fotografin"
             />
             <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
               <span className="my-auto text-center text-2xl font-semibold text-white transition-all group-hover:scale-110">
-                GÄSTEBILDER
+                HIGHLIGHT VIDEO
               </span>
             </div>
           </div>
-          {/*<div className="group relative cursor-pointer">
+        </a>
+        <a target="about/blank" href="/film">
+          <div className="group relative cursor-pointer">
             <Image
-              src={IsabellaImage}
-              className="rounded-2xl brightness-50 transition-all group-hover:brightness-90"
+              src={FilmImage}
+              className="w-full rounded-2xl brightness-50 transition-all group-hover:brightness-90"
               alt="Bilder der Fotografin"
             />
             <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
               <span className="my-auto text-center text-2xl font-semibold text-white transition-all group-hover:scale-110">
-                STANDESAMT FILM
+                HOCHZEITS FILM
               </span>
             </div>
-          </div>*/}
-          {/*<div className="group relative cursor-pointer">
-            <Image
-              src={IsabellaImage}
-              className="rounded-2xl brightness-50 transition-all group-hover:brightness-90"
-              alt="Bilder der Fotografin"
-            />
-            <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
-              <span className="my-auto text-center text-2xl font-semibold text-white transition-all group-hover:scale-110">
-                FOTOBOX
-              </span>
-            </div>
-          </div>*/}
-        </div>
+          </div>
+        </a>
       </div>
     </ReCaptchaProvider>
   );

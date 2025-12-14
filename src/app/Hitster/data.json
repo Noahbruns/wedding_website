@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "video": "https://ivcejloqkmzmqwv9.public.blob.vercel-storage.com/Hitster_FEE89F3F-CE6E-4336-A5AD-D97EB2246BF7/01.mov",
+    "year": 2010,
+    "title": "Rolling in the Deep",
+    "artist": "Adele"
+  },
+  {
+    "id": "2",
+    "video": "https://ivcejloqkmzmqwv9.public.blob.vercel-storage.com/Hitster_FEE89F3F-CE6E-4336-A5AD-D97EB2246BF7/02.mov",
+    "year": 1999,
+    "title": "I Want It That Way",
+    "artist": "Backstreet Boys"
+  },
+  {
+    "id": "5",
+    "video": "https://ivcejloqkmzmqwv9.public.blob.vercel-storage.com/Hitster_FEE89F3F-CE6E-4336-A5AD-D97EB2246BF7/05.mov",
+    "year": 1982,
+    "title": "Thriller",
+    "artist": "Michael Jackson"
+  },
+  {
+    "id": "4",
+    "video": "https://ivcejloqkmzmqwv9.public.blob.vercel-storage.com/Hitster_FEE89F3F-CE6E-4336-A5AD-D97EB2246BF7/04.mov",
+    "year": 2022,
+    "title": "As It Was",
+    "artist": "Harry Styles"
+  }
+]
