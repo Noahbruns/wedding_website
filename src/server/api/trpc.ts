@@ -6,9 +6,27 @@
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.
  */
-import { initTRPC } from "@trpc/server";
+import { initTRPC, TRPCError } from "@trpc/server"; // <-- Import TRPCError
 import superjson from "superjson";
 import { ZodError } from "zod";
+import { env } from "~/env";
+
+import { db } from "~/server/db";
+
+// 2. Helper to parse cookies from the Headers object
+const parseCookies = (headers: Headers) => {
+  const cookieHeader = headers.get("cookie");
+  if (!cookieHeader) return {};
+
+  const cookies: Record<string, string> = {};
+  cookieHeader.split(";").forEach((cookie) => {
+    const [key, value] = cookie.trim().split("=");
+    if (key && value) {
+      cookies[key] = decodeURIComponent(value);
+    }
+  });
+  return cookies;
+};
 
 /**
  * 1. CONTEXT
@@ -24,7 +42,9 @@ import { ZodError } from "zod";
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
   return {
+    db,
     ...opts,
+    cookies: parseCookies(opts.headers),
   };
 };
 
@@ -94,10 +114,39 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
 });
 
 /**
+ * Middleware to check for the 'pw' cookie
+ */
+const enforcePasswordCheck = t.middleware(({ ctx, next }) => {
+  const pw_cookie = ctx.cookies.pw;
+
+  // The check for the cookie's value
+  if (pw_cookie !== env.PW) {
+    // If the password is not correct, throw a FORBIDDEN error
+    throw new TRPCError({
+      code: "FORBIDDEN",
+      message: "Access denied. Correct password cookie ('pw') is required.",
+    });
+  }
+
+  // If the check passes, proceed to the next middleware or the procedure logic
+  return next();
+});
+
+/**
  * Public (unauthenticated) procedure
  *
  * This is the base piece you use to build new queries and mutations on your tRPC API. It does not
  * guarantee that a user querying is authorized, but you can still access user session data if they
  * are logged in.
  */
-export const publicProcedure = t.procedure.use(timingMiddleware);
+//export const publicProcedure = t.procedure.use(timingMiddleware);
+
+/**
+ * Protected (password-authenticated) procedure
+ *
+ * This is the base piece you use to build new queries and mutations that require
+ * the 'pw' cookie to be set correctly.
+ */
+export const protectedProcedure = t.procedure
+  .use(timingMiddleware)
+  .use(enforcePasswordCheck);

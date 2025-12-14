@@ -25,8 +25,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 
 import { cookies } from "next/headers";
 import PasswordScreen from "./pw";
-
-const PW = "TOBLERONE17";
+import { env } from "~/env";
 
 export const metadata: Metadata = {
   title: "Wedding Website",
@@ -40,7 +39,7 @@ export default function RootLayout({
   const cookieStore = cookies();
   const pw_cookie = cookieStore.get("pw")?.value;
 
-  if (pw_cookie != PW) {
+  if (pw_cookie != env.PW) {
     return (
       <html
         lang="en"
