@@ -4,11 +4,19 @@ import "~/styles/globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
 import { Raleway } from "next/font/google";
+import { Montserrat } from "next/font/google";
 
 // If loading a variable font, you don't need to specify the font weight
 const RalewayLatin = Raleway({
   subsets: ["latin"],
   display: "block",
+});
+
+// If loading a variable font, you don't need to specify the font weight
+const MontserratLatin = Montserrat({
+  subsets: ["latin"],
+  display: "block",
+  variable: "--font-montserrat",
 });
 
 import { type Metadata } from "next";
@@ -34,7 +42,10 @@ export default function RootLayout({
 
   if (pw_cookie != PW) {
     return (
-      <html lang="en" className={`${RalewayLatin.className}`}>
+      <html
+        lang="en"
+        className={`${RalewayLatin.className} ${MontserratLatin.className}`}
+      >
         <body className="font-raleway container mx-auto my-5 mt-0 flex w-full snap-y flex-col gap-16 bg-background px-4 pb-16 pt-0 text-black">
           <PasswordScreen />
           <Analytics />
@@ -44,7 +55,10 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className={`${RalewayLatin.className}`}>
+    <html
+      lang="en"
+      className={`${RalewayLatin.className} ${MontserratLatin.className}`}
+    >
       <body className="font-raleway container mx-auto my-5 mt-0 flex w-full snap-y flex-col gap-16 bg-background px-4 pb-16 pt-0 text-black">
         <TRPCReactProvider>{children}</TRPCReactProvider>
         <Analytics />

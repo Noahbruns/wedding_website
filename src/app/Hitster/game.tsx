@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import HitsterImage from "~/images/hitster.png";
 import INPUT_DECK from "./data.json";
 import confetti from "canvas-confetti";
@@ -21,6 +21,47 @@ const START_CARD: HitsterCard = {
   title: "Startpunkt",
   artist: "Zeitlinie",
   video: undefined,
+};
+
+// --- Helper for Card Styling ---
+// Generates a deterministic style based on ID so the card always looks the same
+const getCardVisuals = (id: string, isStartCard: boolean) => {
+  if (isStartCard) {
+    return {
+      bg: "bg-slate-900 border-2 border-slate-700",
+      text: "text-slate-200",
+      rotation: "rotate-0",
+      yearColor: "text-slate-400",
+    };
+  }
+
+  const hash = id.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+
+  const styles = [
+    { bg: "bg-[#FBBF24]", text: "text-black" }, // Yellow (Linda Ronstadt style)
+    { bg: "bg-[#E11D48]", text: "text-white" }, // Rose/Red (Dean Martin style)
+    { bg: "bg-[#7C3AED]", text: "text-white" }, // Purple (Joe Cocker style)
+    { bg: "bg-[#22D3EE]", text: "text-black" }, // Cyan (C. Tangana style)
+    { bg: "bg-[#F97316]", text: "text-black" }, // Orange (Jarabe De Palo style)
+  ];
+
+  const rotations = [
+    "rotate-1",
+    "-rotate-2",
+    "rotate-2",
+    "-rotate-1",
+    "rotate-0",
+  ];
+
+  const selectedStyle = styles[hash % styles.length];
+  const selectedRotation = rotations[hash % rotations.length];
+
+  return {
+    bg: selectedStyle!.bg,
+    text: selectedStyle!.text,
+    rotation: selectedRotation,
+    yearColor: "inherit",
+  };
 };
 
 export default function HitsterGame() {
@@ -88,24 +129,17 @@ export default function HitsterGame() {
       setDeck((prev) => [currentCard, ...prev]);
     }
 
-    // Wenn 'success', ist Karte schon in Timeline, wir brauchen sie nicht mehr im Deck
-
-    // Prüfen ob Spiel vorbei
     if (deck.length === 0 && gameState !== "error") {
       setGameState("won");
       setCurrentCard(null);
       setSelectedGap(null);
-
       void confetti();
     } else {
-      // Nächste Karte ziehen
       const nextDeck = [...deck];
       const next = nextDeck.pop();
       setDeck(nextDeck);
 
       setCurrentCard(next ?? null);
-
-      // Reset States
       setGameState("playing");
       setSelectedGap(null);
       setFeedbackMsg("");
@@ -113,21 +147,21 @@ export default function HitsterGame() {
   };
 
   return (
-    <main className="-z-40 flex h-screen w-screen flex-col overflow-auto bg-black text-slate-100">
+    <main className="--font-montserrat -z-40 flex h-screen w-screen flex-col overflow-auto bg-black text-slate-100">
       {/* --- HEADER --- */}
       <Image
         src={HitsterImage}
         alt="HITSTER Logo"
-        className="fixed left-0 right-0 -z-20 w-56"
+        className="fixed left-0 right-0 -z-20 w-56 opacity-50"
       />
 
       {/* --- OBERER BEREICH: VIDEO & STEUERUNG --- */}
       <div className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center p-4">
         <div className="flex w-full max-w-2xl flex-col items-center gap-6">
-          {/* Gewonnen State */}
+          {/* Welcome State */}
           {gameState === "welcome" && (
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-yellow-400">Wilkommen</h2>
+              <h2 className="text-3xl font-bold text-yellow-400">Willkommen</h2>
               <button
                 onClick={() => setGameState("playing")}
                 className="mt-6 rounded bg-white px-6 py-2 font-bold text-black hover:bg-gray-200"
@@ -137,7 +171,7 @@ export default function HitsterGame() {
             </div>
           )}
 
-          {/* Gewonnen State */}
+          {/* Won State */}
           {gameState === "won" && (
             <div className="text-center">
               <div className="mb-4 text-6xl">🏆</div>
@@ -153,8 +187,8 @@ export default function HitsterGame() {
 
           {/* Aktuelle Karte (Video) */}
           {currentCard && gameState !== "won" && gameState !== "welcome" && (
-            <div className="w-full rounded-2xl border border-slate-700 bg-slate-800 p-2 shadow-2xl">
-              <div className="relative aspect-video overflow-hidden rounded-lg bg-black">
+            <div className="flex h-full w-full flex-col border border-slate-700 bg-slate-800 p-2 shadow-2xl">
+              <div className="relative aspect-video overflow-hidden bg-black">
                 {currentCard.video ? (
                   <video
                     src={currentCard.video}
@@ -172,12 +206,8 @@ export default function HitsterGame() {
               {/* Info Bereich (Versteckt wenn playing) */}
               <div className="p-4 text-center">
                 {gameState === "playing" ? (
-                  <div className="flex animate-pulse flex-col items-center gap-2">
-                    <div className="h-4 w-1/3 rounded bg-slate-700"></div>
-                    <div className="h-3 w-1/4 rounded bg-slate-700"></div>
-                    <p className="mt-2 text-sm text-slate-500">
-                      Wähle unten eine Lücke und klicke Fertig
-                    </p>
+                  <div className="my-auto animate-pulse text-slate-300">
+                    Höre genau hin... wo passt der Song? {currentCard.year}
                   </div>
                 ) : (
                   <div className="animate-in fade-in slide-in-from-bottom-2">
@@ -192,20 +222,24 @@ export default function HitsterGame() {
             </div>
           )}
 
-          {/* Status / Feedback Box */}
+          {/* Feedback Box */}
           {gameState !== "playing" &&
             gameState !== "won" &&
             gameState !== "welcome" && (
               <div
-                className={`animate-in fade-in zoom-in w-full rounded-xl border p-4 text-center shadow-lg duration-300 ${gameState === "success" ? "border-green-500 bg-green-900/50 text-green-100" : "border-red-500 bg-red-900/50 text-red-100"} `}
+                className={`animate-in fade-in zoom-in absolute bottom-20 z-50 w-full max-w-md rounded-xl border p-6 text-center shadow-2xl duration-300 ${
+                  gameState === "success"
+                    ? "border-green-500 bg-green-900 text-white"
+                    : "border-red-500 bg-red-900 text-white"
+                } `}
               >
                 <h2 className="mb-1 text-2xl font-bold">
-                  {gameState === "success" ? "Fantastisch! 🎉" : "Oh nein! ❌"}
+                  {gameState === "success" ? "Richtig! 🎉" : "Leider nein ❌"}
                 </h2>
                 <p className="mb-4 text-lg">{feedbackMsg}</p>
                 <button
                   onClick={handleContinue}
-                  className="rounded-full bg-white px-8 py-2 font-bold text-slate-900 transition-transform hover:scale-105"
+                  className="rounded-full bg-white px-8 py-2 font-bold text-slate-900 shadow-lg transition-transform hover:scale-105"
                 >
                   Weiter
                 </button>
@@ -223,28 +257,19 @@ export default function HitsterGame() {
                   : "cursor-not-allowed bg-slate-700 text-slate-500"
               } `}
             >
-              {selectedGap === null ? "Bitte Position wählen" : "Fertig"}
+              {selectedGap === null ? "Position wählen" : "Platzieren"}
             </button>
           )}
         </div>
       </div>
 
       {/* --- UNTERER BEREICH: ZEITLINIE --- */}
-      <div className="z-10 flex flex-col border-t border-slate-700 bg-slate-800 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
-        <div className="sticky left-0 flex items-center justify-between border-b border-slate-700 bg-slate-800/90 px-6 py-2 backdrop-blur">
-          <span className="text-sm font-bold uppercase tracking-wider text-slate-400">
-            Deine Zeitlinie
-          </span>
-          <span className="text-xs text-slate-500">
-            Stapel: {deck.length} Karten übrig
-          </span>
-        </div>
-
-        <div className="flex flex-1 items-center overflow-x-auto p-6">
-          <div className="mx-auto flex min-w-max items-center space-x-2">
+      <div className="z-10 flex flex-col border-t border-slate-700 bg-slate-900/50 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] backdrop-blur-sm">
+        <div className="flex flex-1 items-center overflow-x-auto overflow-y-hidden p-8 pb-12">
+          <div className="mx-auto flex min-w-max items-center">
             {timeline.map((card, index) => (
               <React.Fragment key={card.id}>
-                {/* Lücken-Selektor VOR der Karte */}
+                {/* Lücken-Selektor */}
                 <GapSelector
                   index={index}
                   isSelected={selectedGap === index}
@@ -260,7 +285,7 @@ export default function HitsterGame() {
               </React.Fragment>
             ))}
 
-            {/* Lücken-Selektor NACH der letzten Karte */}
+            {/* Letzter Selektor */}
             <GapSelector
               index={timeline.length}
               isSelected={selectedGap === timeline.length}
@@ -274,45 +299,43 @@ export default function HitsterGame() {
   );
 }
 
-// --- Komponenten ---
+// --- COMPONENTS ---
+
 function TimelineCard({ card, isNew }: { card: HitsterCard; isNew?: boolean }) {
   const isStartCard = card.artist === "Zeitlinie";
 
+  // Use memo to ensure styles don't change on re-renders
+  const visuals = useMemo(
+    () => getCardVisuals(card.id, isStartCard),
+    [card.id, isStartCard],
+  );
+
   return (
     <div
-      className={`group relative flex flex-col items-center ${isNew ? "animate-in zoom-in duration-500" : ""}`}
+      className={`relative mx-2 flex h-40 w-40 flex-col items-center justify-between p-3 shadow-xl transition-transform ${visuals.bg} ${visuals.text} ${visuals.rotation} ${isNew ? "animate-in zoom-in spin-in-3 duration-700" : ""} `}
     >
-      {/* Jahreszahl Bubble */}
+      {/* Top: Artist */}
+      <div className="w-full text-center">
+        <p className="line-clamp-1 text-[10px] font-bold uppercase tracking-wider opacity-90">
+          {card.artist}
+        </p>
+      </div>
+
+      {/* Center: Year */}
       <div
-        className={`z-10 mb-2 rounded-full border-2 px-3 py-1 text-xl font-bold ${
-          isStartCard
-            ? "border-slate-600 bg-slate-700 text-slate-400"
-            : "border-orange-400 bg-orange-500 text-white shadow-[0_0_15px_rgba(249,115,22,0.5)]"
-        } `}
+        className={`text-5xl font-black tracking-tighter ${visuals.yearColor}`}
       >
         {card.year}
       </div>
 
-      {/* Karte */}
-      <div className="relative flex h-32 w-32 flex-col overflow-hidden rounded-lg border border-slate-700 bg-slate-900 shadow-lg">
-        <div className="flex flex-1 items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 p-2 text-center">
-          <div>
-            <p className="line-clamp-2 text-xs font-bold text-white">
-              {card.title}
-            </p>
-            <p className="mt-1 line-clamp-1 text-[10px] text-slate-400">
-              {card.artist}
-            </p>
-          </div>
-        </div>
-        {/* Dekorativer unterer Balken */}
-        <div
-          className={`h-1 w-full ${isStartCard ? "bg-slate-600" : "bg-orange-500"}`}
-        ></div>
+      {/* Bottom: Song Title */}
+      <div className="w-full text-center">
+        <p className="line-clamp-2 text-xs italic leading-tight">
+          {card.title}
+        </p>
       </div>
 
-      {/* Vertikale Linie */}
-      <div className="mt-2 h-6 w-px bg-slate-700"></div>
+      {/* Optional: Subtle paper texture overlay or highlight could go here */}
     </div>
   );
 }
@@ -329,34 +352,36 @@ function GapSelector({
   disabled: boolean;
 }) {
   return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      className={`group relative flex h-32 w-12 flex-col items-center justify-center rounded-lg transition-all duration-200 ${disabled ? "cursor-default" : "cursor-pointer hover:bg-slate-800"} `}
-    >
-      {/* Linie horizontal (Zeitleiste) */}
-      <div className="absolute left-0 top-1/2 -z-10 h-0.5 w-full bg-slate-700"></div>
-
-      {/* Der Button Kreis */}
-      <div
-        className={`flex h-10 w-10 items-center justify-center rounded-full border-2 shadow-lg transition-all duration-300 ${
-          isSelected
-            ? "scale-125 border-orange-400 bg-orange-500 text-white shadow-orange-500/50"
-            : "border-slate-600 bg-slate-800 text-slate-500"
-        } ${!disabled && !isSelected && "group-hover:scale-110 group-hover:border-orange-500 group-hover:text-orange-500"} `}
+    <div className="relative flex h-40 flex-col items-center justify-center px-1">
+      {/* Invisible hit area for easier clicking */}
+      <button
+        onClick={onClick}
+        disabled={disabled}
+        className={`group z-10 flex h-12 w-12 items-center justify-center rounded-full transition-all duration-200 ${
+          disabled ? "cursor-default opacity-0" : "cursor-pointer"
+        } ${isSelected ? "scale-110 opacity-100" : "opacity-50 hover:opacity-100"}`}
       >
-        {isSelected ? (
-          <span className="text-lg font-bold">✓</span>
-        ) : (
-          <span className="text-xl">+</span>
-        )}
-      </div>
-
-      {isSelected && (
-        <div className="absolute -top-8 animate-bounce whitespace-nowrap text-xs font-bold text-orange-400">
-          Hier?
+        <div
+          className={`flex h-10 w-10 items-center justify-center rounded-full border-2 shadow-lg transition-all ${
+            isSelected
+              ? "border-orange-500 bg-orange-500 text-white"
+              : "border-orange-500 bg-orange-800 text-orange-400 group-hover:border-orange-400 group-hover:text-orange-400"
+          }`}
+        >
+          {isSelected ? (
+            <span className="text-lg font-bold">✓</span>
+          ) : (
+            <span className="text-xl font-bold">+</span>
+          )}
         </div>
+      </button>
+
+      {/* Visual Guide Line (only visible when hovering or selected to keep UI clean) */}
+      {!disabled && (
+        <div
+          className={`absolute top-1/2 -z-10 h-0.5 w-8 bg-slate-700 transition-opacity ${isSelected || "group-hover:opacity-100"} opacity-0`}
+        ></div>
       )}
-    </button>
+    </div>
   );
 }
