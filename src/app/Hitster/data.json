@@ -1,30 +1,107 @@
 [
   {
     "id": "1",
-    "video": "https://ivcejloqkmzmqwv9.public.blob.vercel-storage.com/Hitster_FEE89F3F-CE6E-4336-A5AD-D97EB2246BF7/01.mov",
-    "year": 2010,
-    "title": "Rolling in the Deep",
-    "artist": "Adele"
+    "video": "01.mov",
+    "year": 1979,
+    "title": "Hurra, Hurra Der Pumukel Ist Da",
+    "artist": "Fritz Muschler"
   },
   {
     "id": "2",
-    "video": "https://ivcejloqkmzmqwv9.public.blob.vercel-storage.com/Hitster_FEE89F3F-CE6E-4336-A5AD-D97EB2246BF7/02.mov",
-    "year": 1999,
-    "title": "I Want It That Way",
-    "artist": "Backstreet Boys"
+    "video": "02.mov",
+    "year": 2014,
+    "title": "Shake It Off",
+    "artist": "Taylor Swift"
   },
   {
-    "id": "5",
-    "video": "https://ivcejloqkmzmqwv9.public.blob.vercel-storage.com/Hitster_FEE89F3F-CE6E-4336-A5AD-D97EB2246BF7/05.mov",
-    "year": 1982,
-    "title": "Thriller",
-    "artist": "Michael Jackson"
+    "id": "3",
+    "video": "03.mov",
+    "year": 1998,
+    "title": "Tunak Tunak Tun",
+    "artist": "Daler Mehndi"
   },
   {
     "id": "4",
-    "video": "https://ivcejloqkmzmqwv9.public.blob.vercel-storage.com/Hitster_FEE89F3F-CE6E-4336-A5AD-D97EB2246BF7/04.mov",
-    "year": 2022,
-    "title": "As It Was",
-    "artist": "Harry Styles"
+    "video": "04.mov",
+    "year": 1995,
+    "title": "Lemon Tree",
+    "artist": "Fools Garden"
+  },
+  {
+    "id": "5",
+    "video": "05.mov",
+    "year": 1979,
+    "title": "Don‘t Stop Me Now",
+    "artist": "Queen"
+  },
+  {
+    "id": "6",
+    "video": "06.mov",
+    "year": 1958,
+    "title": "Lollipop",
+    "artist": "Chordettes"
+  },
+  {
+    "id": "7",
+    "video": "07.mov",
+    "year": 2017,
+    "title": "Despacito",
+    "artist": "Luis Fonsi"
+  },
+  {
+    "id": "8",
+    "video": "08.mov",
+    "year": 1939,
+    "title": "Somewhere Over The Rainbow",
+    "artist": "Israel Kamakawiwo‘ole"
+  },
+  {
+    "id": "9",
+    "video": "09.mov",
+    "year": 1980,
+    "title": "Crazy Train",
+    "artist": "Ozzy Osbourne"
+  },
+  {
+    "id": "10",
+    "video": "10.mov",
+    "year": 1984,
+    "title": "Material Girl",
+    "artist": "Madonna"
+  },
+  {
+    "id": "11",
+    "video": "11.mov",
+    "year": 1993,
+    "title": "Macarena",
+    "artist": "Los del Rio"
+  },
+  {
+    "id": "12",
+    "video": "12.mov",
+    "year": 1984,
+    "title": "1000 Und 1 Nacht (Zoom!)",
+    "artist": "Klaus Lage Band"
+  },
+  {
+    "id": "13",
+    "video": "13.mov",
+    "year": 1971,
+    "title": "Take Me Home, Country Roads",
+    "artist": "John Denver"
+  },
+  {
+    "id": "14",
+    "video": "14.mov",
+    "year": 1984,
+    "title": "I Want To Break Free",
+    "artist": "Queen"
+  },
+  {
+    "id": "15",
+    "video": "15.mov",
+    "year": 2012,
+    "title": "Du",
+    "artist": "Cro"
   }
 ]

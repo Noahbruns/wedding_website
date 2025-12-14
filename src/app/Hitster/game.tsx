@@ -161,8 +161,7 @@ export default function HitsterGame() {
                     <div className="h-4 w-1/3 rounded bg-slate-700"></div>
                     <div className="h-3 w-1/4 rounded bg-slate-700"></div>
                     <p className="mt-2 text-sm text-slate-500">
-                      Wähle unten eine Lücke und klicke Fertig{" "}
-                      {currentCard.year}
+                      Wähle unten eine Lücke und klicke Fertig
                     </p>
                   </div>
                 ) : (
