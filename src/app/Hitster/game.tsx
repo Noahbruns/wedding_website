@@ -16,8 +16,8 @@ export type HitsterCard = {
 };
 
 const START_CARD: HitsterCard = {
-  id: "start-1980",
-  year: 1980,
+  id: "start-1990",
+  year: 1990,
   title: "Startpunkt",
   artist: "Zeitlinie",
   video: undefined,
@@ -34,8 +34,8 @@ export default function HitsterGame() {
 
   // Feedback State
   const [gameState, setGameState] = useState<
-    "playing" | "success" | "error" | "won"
-  >("playing");
+    "welcome" | "playing" | "success" | "error" | "won"
+  >("welcome");
   const [feedbackMsg, setFeedbackMsg] = useState<string>("");
 
   // Initialisierung
@@ -102,6 +102,7 @@ export default function HitsterGame() {
       const nextDeck = [...deck];
       const next = nextDeck.pop();
       setDeck(nextDeck);
+
       setCurrentCard(next ?? null);
 
       // Reset States
@@ -124,6 +125,19 @@ export default function HitsterGame() {
       <div className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center p-4">
         <div className="flex w-full max-w-2xl flex-col items-center gap-6">
           {/* Gewonnen State */}
+          {gameState === "welcome" && (
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-yellow-400">Wilkommen</h2>
+              <button
+                onClick={() => setGameState("playing")}
+                className="mt-6 rounded bg-white px-6 py-2 font-bold text-black hover:bg-gray-200"
+              >
+                Start
+              </button>
+            </div>
+          )}
+
+          {/* Gewonnen State */}
           {gameState === "won" && (
             <div className="text-center">
               <div className="mb-4 text-6xl">🏆</div>
@@ -138,7 +152,7 @@ export default function HitsterGame() {
           )}
 
           {/* Aktuelle Karte (Video) */}
-          {currentCard && gameState !== "won" && (
+          {currentCard && gameState !== "won" && gameState !== "welcome" && (
             <div className="w-full rounded-2xl border border-slate-700 bg-slate-800 p-2 shadow-2xl">
               <div className="relative aspect-video overflow-hidden rounded-lg bg-black">
                 {currentCard.video ? (
@@ -146,6 +160,7 @@ export default function HitsterGame() {
                     src={currentCard.video}
                     controls
                     className="h-full w-full object-cover"
+                    autoPlay={true}
                   />
                 ) : (
                   <div className="flex h-full items-center justify-center text-gray-500">
@@ -178,22 +193,24 @@ export default function HitsterGame() {
           )}
 
           {/* Status / Feedback Box */}
-          {gameState !== "playing" && gameState !== "won" && (
-            <div
-              className={`animate-in fade-in zoom-in w-full rounded-xl border p-4 text-center shadow-lg duration-300 ${gameState === "success" ? "border-green-500 bg-green-900/50 text-green-100" : "border-red-500 bg-red-900/50 text-red-100"} `}
-            >
-              <h2 className="mb-1 text-2xl font-bold">
-                {gameState === "success" ? "Fantastisch! 🎉" : "Oh nein! ❌"}
-              </h2>
-              <p className="mb-4 text-lg">{feedbackMsg}</p>
-              <button
-                onClick={handleContinue}
-                className="rounded-full bg-white px-8 py-2 font-bold text-slate-900 transition-transform hover:scale-105"
+          {gameState !== "playing" &&
+            gameState !== "won" &&
+            gameState !== "welcome" && (
+              <div
+                className={`animate-in fade-in zoom-in w-full rounded-xl border p-4 text-center shadow-lg duration-300 ${gameState === "success" ? "border-green-500 bg-green-900/50 text-green-100" : "border-red-500 bg-red-900/50 text-red-100"} `}
               >
-                Weiter
-              </button>
-            </div>
-          )}
+                <h2 className="mb-1 text-2xl font-bold">
+                  {gameState === "success" ? "Fantastisch! 🎉" : "Oh nein! ❌"}
+                </h2>
+                <p className="mb-4 text-lg">{feedbackMsg}</p>
+                <button
+                  onClick={handleContinue}
+                  className="rounded-full bg-white px-8 py-2 font-bold text-slate-900 transition-transform hover:scale-105"
+                >
+                  Weiter
+                </button>
+              </div>
+            )}
 
           {/* Action Button */}
           {gameState === "playing" && currentCard && (
@@ -259,7 +276,7 @@ export default function HitsterGame() {
 
 // --- Komponenten ---
 function TimelineCard({ card, isNew }: { card: HitsterCard; isNew?: boolean }) {
-  const isStartCard = card.year === 1980 && card.artist === "Zeitlinie";
+  const isStartCard = card.artist === "Zeitlinie";
 
   return (
     <div
@@ -277,7 +294,7 @@ function TimelineCard({ card, isNew }: { card: HitsterCard; isNew?: boolean }) {
       </div>
 
       {/* Karte */}
-      <div className="relative flex h-40 w-32 flex-col overflow-hidden rounded-lg border border-slate-700 bg-slate-900 shadow-lg">
+      <div className="relative flex h-32 w-32 flex-col overflow-hidden rounded-lg border border-slate-700 bg-slate-900 shadow-lg">
         <div className="flex flex-1 items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 p-2 text-center">
           <div>
             <p className="line-clamp-2 text-xs font-bold text-white">
