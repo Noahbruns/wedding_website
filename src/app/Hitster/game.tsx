@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React, { useState, useEffect, useMemo } from "react";
-import HitsterImage from "~/images/hitster.png";
+import HitsterImage from "~/images/hitster_logo.png";
 import INPUT_DECK from "./data.json";
 import confetti from "canvas-confetti";
 import { api } from "~/trpc/react";
@@ -169,25 +169,30 @@ export default function HitsterGame() {
   };
 
   return (
-    <main className="--font-montserrat -z-40 flex h-screen w-screen flex-col overflow-auto bg-black text-slate-100">
+    <main className="--font-montserrat -z-40 flex h-full w-screen flex-col overflow-auto bg-slate-950 text-slate-100">
       {/* --- HEADER --- */}
-      <Image
-        src={HitsterImage}
-        alt="HITSTER Logo"
-        className="fixed left-0 right-0 -z-20 w-56 opacity-50"
-      />
+      {gameState != "welcome" && (
+        <Image
+          src={HitsterImage}
+          alt="HITSTER Logo"
+          className="fixed left-8 top-4 -z-20 w-56 opacity-50"
+        />
+      )}
 
       {/* --- OBERER BEREICH: Welcome --- */}
       {gameState === "welcome" && (
-        <div className="mt-10 flex flex-col gap-4 text-center">
-          <h2 className="text-3xl font-bold text-yellow-400">Willkommen</h2>
-          <div className="text-lg text-yellow-400">
+        <div className="mt-10 flex flex-col items-center gap-4 text-center">
+          <Image src={HitsterImage} alt="HITSTER Logo" className="w-56" />
+          <h2 className="text-3xl font-bold text-[#FFED00]">
+            Hochzeitsedition Dani und Noah
+          </h2>
+          <div className="text-lg italic text-[#FFED00]">
             Ihr habt uns herausgefordert, jetzt fordern wir euch heraus!
           </div>
 
           <button
             onClick={() => setGameState("playing")}
-            className="mx-auto rounded bg-white px-6 py-2 font-bold text-black hover:bg-gray-200"
+            className="mx-auto mt-3 rounded bg-[#FFED00] px-6 py-2 font-bold text-black hover:bg-gray-200"
           >
             Los gehts!
           </button>
@@ -198,11 +203,16 @@ export default function HitsterGame() {
       <div className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center p-4">
         <div className="flex w-full max-w-2xl flex-col items-center gap-6">
           {/* Won State / Scoreboard (Direktes Anzeigen des Formulars) */}
-          {gameState === "won" && <Scoreboard score={player.score} />}
+          {gameState === "won" && (
+            <Scoreboard
+              score={player.score}
+              setShowLeaderboard={setShowLeaderboard}
+            />
+          )}
 
           {/* Aktuelle Karte (Video) */}
           {currentCard && gameState !== "won" && gameState !== "welcome" && (
-            <div className="flex w-full flex-col border border-slate-700 bg-slate-800 p-2 shadow-2xl">
+            <div className="flex w-full flex-col border border-slate-800 bg-slate-900 p-2 shadow-2xl">
               <div className="relative aspect-video overflow-hidden bg-black">
                 {currentCard.video ? (
                   <video
@@ -426,7 +436,7 @@ function LeaderboardModal({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity">
       <div className="animate-in zoom-in w-full max-w-md rounded-xl border border-slate-700 bg-slate-800 p-8 text-center shadow-2xl duration-300">
-        <h2 className="mb-6 text-3xl font-bold text-yellow-400">
+        <h2 className="mb-6 text-3xl font-bold text-[#FFED00]">
           🏆 Top Rangliste
         </h2>
 
@@ -474,7 +484,13 @@ function LeaderboardModal({ onClose }: { onClose: () => void }) {
 }
 
 // 2. Scoreboard / Lead List Component (mit tRPC Mutation)
-function Scoreboard({ score }: { score: number }) {
+function Scoreboard({
+  score,
+  setShowLeaderboard,
+}: {
+  score: number;
+  setShowLeaderboard: (state: boolean) => void;
+}) {
   const [playerName, setPlayerName] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
@@ -502,7 +518,7 @@ function Scoreboard({ score }: { score: number }) {
   return (
     <div className="w-full max-w-lg rounded-xl border border-slate-700 bg-slate-800 p-8 text-center shadow-2xl">
       <div className="mb-4 text-6xl">🎉</div>
-      <h2 className="text-3xl font-bold text-yellow-400">Spiel beendet!</h2>
+      <h2 className="text-3xl font-bold text-[#FFED00]">Spiel beendet!</h2>
       <p className="mb-6 text-xl text-slate-300">
         Dein Endergebnis:{" "}
         <span className="font-extrabold text-orange-400">{score} Punkte</span>
@@ -513,7 +529,7 @@ function Scoreboard({ score }: { score: number }) {
         <p className="mt-4 text-lg font-bold text-green-400">{submitMessage}</p>
       ) : (
         <form onSubmit={handleSubmitScore} className="mt-8 space-y-4">
-          <h3 className="text-xl font-bold text-yellow-400">
+          <h3 className="text-xl font-bold text-[#FFED00]">
             Trage dich in die Rangliste ein!
           </h3>
           <input
@@ -540,12 +556,21 @@ function Scoreboard({ score }: { score: number }) {
         </form>
       )}
 
-      <button
-        onClick={() => window.location.reload()}
-        className="mt-8 rounded-full bg-white px-8 py-2 font-bold text-black shadow-lg transition-transform hover:scale-105"
-      >
-        Neues Spiel
-      </button>
+      <div className="mt-8 flex flex-row items-center justify-center gap-7">
+        <button
+          onClick={() => window.location.reload()}
+          className="h-12 rounded-full bg-white px-8 py-2 font-bold text-black shadow-lg transition-transform hover:scale-105"
+        >
+          Neues Spiel
+        </button>
+
+        <button
+          onClick={() => setShowLeaderboard(true)}
+          className="h-12 rounded-full bg-white px-8 py-2 font-bold text-black shadow-lg transition-transform hover:scale-105"
+        >
+          <span className="text-xl">🏆</span> Rangliste
+        </button>
+      </div>
     </div>
   );
 }

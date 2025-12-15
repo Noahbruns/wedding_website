@@ -1,5 +1,5 @@
 //"use server";
-
+import { headers } from "next/headers";
 import "~/styles/globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
@@ -26,6 +26,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { cookies } from "next/headers";
 import PasswordScreen from "./pw";
 import { env } from "~/env";
+import { usePathname } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Wedding Website",
@@ -36,8 +37,11 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const headersList = headers();
+
   const cookieStore = cookies();
   const pw_cookie = cookieStore.get("pw")?.value;
+  const path = headersList.get("referer") || "";
 
   if (pw_cookie != env.PW) {
     return (
@@ -51,6 +55,18 @@ export default function RootLayout({
         </body>
       </html>
     );
+  }
+
+  if (path == "Hitster") {
+    <html
+      lang="en"
+      className={`${RalewayLatin.className} ${MontserratLatin.className}`}
+    >
+      <body className="">
+        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <Analytics />
+      </body>
+    </html>;
   }
 
   return (
