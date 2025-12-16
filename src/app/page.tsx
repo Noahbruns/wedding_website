@@ -7,12 +7,13 @@ import Image from "next/image";
 import { env } from "~/env";
 import MainImage from "~/images/danke_2.svg";
 import IsabellaImage from "~/images/isabella.jpg";
-import NoahCamImage from "~/images/noah-cam.jpg";
-import LSImage from "~/images/ls.jpeg";
+import NoahCamImage from "~/images/hochzeit_dani_noah_2.jpg";
+import PartyImage from "~/images/noah-cam.jpg";
 import FilmImage from "~/images/film.gif";
 import FotoboxImage from "~/images/fotobox.jpg";
 import HitsterImage from "~/images/hitster.png";
 import HighlightImage from "~/images/highlight.gif";
+import StandesamtImage from "~/images/standesamt.gif";
 
 const Content: NextPage = () => {
   return (
@@ -51,7 +52,7 @@ const Content: NextPage = () => {
             <div className="group relative cursor-pointer">
               <Image
                 src={IsabellaImage}
-                className="w-full rounded-2xl brightness-50 transition-all group-hover:brightness-90"
+                className="w-full rounded-2xl brightness-75 transition-all group-hover:brightness-90"
                 alt="Bilder der Fotografin"
               />
               <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
@@ -62,11 +63,25 @@ const Content: NextPage = () => {
               </div>
             </div>
           </a>
+          <a href="/BehindTheScenes">
+            <div className="group relative cursor-pointer">
+              <Image
+                src={NoahCamImage}
+                className="rounded-2xl brightness-75 transition-all group-hover:brightness-90"
+                alt="Bilder der Fotografin"
+              />
+              <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
+                <span className="my-auto text-center text-2xl font-semibold text-white transition-all group-hover:scale-110">
+                  NOAHS CAMERA <br /> BEHIND THE SCENES
+                </span>
+              </div>
+            </div>
+          </a>
           <a href="/Party">
             <div className="group relative cursor-pointer">
               <Image
-                src={LSImage}
-                className="w-full rounded-2xl brightness-50 transition-all group-hover:brightness-90"
+                src={PartyImage}
+                className="w-full rounded-2xl brightness-75 transition-all group-hover:brightness-90"
                 alt="Bilder Lukas & Sophia"
               />
               <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
@@ -80,7 +95,7 @@ const Content: NextPage = () => {
             <div className="group relative cursor-pointer">
               <Image
                 src={FotoboxImage}
-                className="w-full rounded-2xl brightness-50 transition-all group-hover:brightness-90"
+                className="w-full rounded-2xl brightness-75 transition-all group-hover:brightness-90"
                 alt="Bilder der Fotografin"
               />
               <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
@@ -89,31 +104,23 @@ const Content: NextPage = () => {
                 </span>
               </div>
             </div>
-          </a>{" "}
-          <a href="/BehindTheScenes">
-            <div className="group relative cursor-pointer">
-              <Image
-                src={NoahCamImage}
-                className="rounded-2xl brightness-50 transition-all group-hover:brightness-90"
-                alt="Bilder der Fotografin"
-              />
-              <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
-                <span className="my-auto text-center text-2xl font-semibold text-white transition-all group-hover:scale-110">
-                  NOAHS CAMERA <br /> BEHIND THE SCENES
-                </span>
-              </div>
-            </div>
-          </a>
-          <a href="/Hitster">
-            <div className="group relative cursor-pointer">
-              <Image
-                src={HitsterImage}
-                className="w-full rounded-2xl brightness-90 transition-all group-hover:brightness-110"
-                alt="Bilder der Fotografin"
-              />
-            </div>
           </a>
         </div>
+      </div>
+      <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
+        GAMES
+        <ArrowLongRightIcon className="mb-1 ml-4 w-8 transition-all group-hover/head:ml-7" />
+      </div>
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <a href="/Hitster">
+          <div className="group relative cursor-pointer">
+            <Image
+              src={HitsterImage}
+              className="w-full rounded-2xl brightness-90 transition-all group-hover:brightness-110"
+              alt="Bilder der Fotografin"
+            />
+          </div>
+        </a>
       </div>
       <div className="group/head flex flex-row items-center text-2xl font-semibold uppercase">
         VIDEOS
@@ -124,7 +131,7 @@ const Content: NextPage = () => {
           <div className="group relative cursor-pointer">
             <Image
               src={HighlightImage}
-              className="w-full rounded-2xl brightness-50 transition-all group-hover:brightness-90"
+              className="w-full rounded-2xl brightness-75 transition-all group-hover:brightness-90"
               alt="Bilder der Fotografin"
             />
             <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
@@ -138,12 +145,26 @@ const Content: NextPage = () => {
           <div className="group relative cursor-pointer">
             <Image
               src={FilmImage}
-              className="w-full rounded-2xl brightness-50 transition-all group-hover:brightness-90"
+              className="w-full rounded-2xl brightness-75 transition-all group-hover:brightness-90"
               alt="Bilder der Fotografin"
             />
             <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
               <span className="my-auto text-center text-2xl font-semibold text-white transition-all group-hover:scale-110">
-                HOCHZEITS FILM
+                HOCHZEITSFILM
+              </span>
+            </div>
+          </div>
+        </a>
+        <a target="about/blank" href="/standesamt">
+          <div className="group relative cursor-pointer">
+            <Image
+              src={StandesamtImage}
+              className="w-full rounded-2xl brightness-75 transition-all group-hover:brightness-90"
+              alt="Bilder der Fotografin"
+            />
+            <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
+              <span className="my-auto text-center text-2xl font-semibold text-white transition-all group-hover:scale-110">
+                STANDESAMTLICHE HOCHZEIT
               </span>
             </div>
           </div>

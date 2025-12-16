@@ -115,7 +115,7 @@ export default function ImageViewer({
           <img
             key={blob.pathname}
             src={blob.downloadUrl}
-            className="aspect-square cursor-pointer object-cover shadow transition-shadow duration-300 hover:shadow-md"
+            className="aspect-square w-full cursor-pointer object-cover shadow transition-shadow duration-300 hover:shadow-md"
             alt={`Bilder der Fotografin (Vorschau ${index + 1})`}
             onClick={() => handleImageClick(index)}
           />

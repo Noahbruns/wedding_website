@@ -4,9 +4,10 @@ import path from "path";
 import "dotenv/config";
 
 // CONFIGURATION
-const LOCAL_FOLDER_PATH = "/Users/noah/Pictures/Hochzeit/fotobox/fullsize"; // The local folder you want to upload
+const LOCAL_FOLDER_PATH =
+  "/Users/noah/Pictures/Hochzeit/250417_Hochzeit/preview"; // The local folder you want to upload
 const BLOB_FOLDER_PREFIX =
-  "Fotobox_86DA43B1-6020-4073-9751-97907B4216E6/fullsize"; // Optional: Prefix in the blob storage (e.g. 'v1/images')
+  "Noahs_Cam_D519AA54-530A-4473-8664-C7B53ACBA573/preview"; // Optional: Prefix in the blob storage (e.g. 'v1/images')
 
 async function getFilesRecursively(dir) {
   const dirents = await fs.promises.readdir(dir, { withFileTypes: true });
