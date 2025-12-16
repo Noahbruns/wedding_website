@@ -28,16 +28,13 @@ const Content: NextPage = () => {
         <div className="order-first flex flex-col gap-6 text-right text-xl leading-loose sm:order-none">
           <span className="uppercase">Liebe Familie und Freunde,</span>
           <span className="uppercase">
-            willkommen auf unserer Homepage! <br />
-            Wir laden euch herzlich <br />
-            zu unserer Hochzeit
-            <br />
-            am <span className="underline">17. April 2025</span> ein.
-            <br />
+            Danke, dass ihr mit uns <br />
+            gefeiert habt! <br />
           </span>
           <span className="italic">
-            Kommt in bester Feierlaune <wbr />- wir haben Essen, Drinks und
-            genug Bühne für all eure Tanzmoves!
+            Viele schöne Erinnerungen sind entstanden die wir gerne mit euch
+            teilen möchten! Falls ihr auch noch schöne Bilder oder Videos habt
+            sendet sie uns gerne zu!
           </span>
         </div>
       </div>
@@ -65,7 +62,7 @@ const Content: NextPage = () => {
               </div>
             </div>
           </a>
-          <a href="/BilderLukasSophia">
+          <a href="/Party">
             <div className="group relative cursor-pointer">
               <Image
                 src={LSImage}
@@ -75,13 +72,10 @@ const Content: NextPage = () => {
               <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
                 <span className="my-auto text-center text-2xl font-semibold text-white transition-all group-hover:scale-110">
                   PARTYBILDER
-                  <br />
-                  LUKAS & SOPHIA
                 </span>
               </div>
             </div>
           </a>
-
           <a href="/Fotobox">
             <div className="group relative cursor-pointer">
               <Image
@@ -95,19 +89,21 @@ const Content: NextPage = () => {
                 </span>
               </div>
             </div>
-          </a>
-          <div className="group relative cursor-pointer">
-            <Image
-              src={NoahCamImage}
-              className="rounded-2xl brightness-50 transition-all group-hover:brightness-90"
-              alt="Bilder der Fotografin"
-            />
-            <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
-              <span className="my-auto text-center text-2xl font-semibold text-white transition-all group-hover:scale-110">
-                NOAHS CAMERA
-              </span>
+          </a>{" "}
+          <a href="/BehindTheScenes">
+            <div className="group relative cursor-pointer">
+              <Image
+                src={NoahCamImage}
+                className="rounded-2xl brightness-50 transition-all group-hover:brightness-90"
+                alt="Bilder der Fotografin"
+              />
+              <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center align-middle">
+                <span className="my-auto text-center text-2xl font-semibold text-white transition-all group-hover:scale-110">
+                  NOAHS CAMERA <br /> BEHIND THE SCENES
+                </span>
+              </div>
             </div>
-          </div>
+          </a>
           <a href="/Hitster">
             <div className="group relative cursor-pointer">
               <Image

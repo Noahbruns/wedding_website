@@ -5,7 +5,7 @@ import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 
 const Content: NextPage = async () => {
   const images = await list({
-    prefix: "Lukas_Sophia_BFFFE8CD-7F0E-43C7-9556-7E1872812501/preview/",
+    prefix: "Noah_BHS_88351F31-6273-4530-9F7C-52D51FF1893C/preview/",
   });
 
   return (
@@ -15,7 +15,7 @@ const Content: NextPage = async () => {
         Zurück
       </a>
       <div className="-mb-5 text-3xl font-semibold uppercase">
-        Bilder von Lukas und Sophia
+        Bilder von Noahs Camera
       </div>
       <ImageViewer initialBlobs={images.blobs} />
     </>

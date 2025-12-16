@@ -14,13 +14,15 @@ interface Blob {
   downloadUrl: string;
 }
 
-const SWIPE_THRESHOLD = 50;
-
 export default function ImageViewer({
-  initialBlobs,
+  initialBlobs: initialBlobsFull,
 }: {
   initialBlobs: Blob[];
 }) {
+  const initialBlobs = useMemo(() => {
+    return initialBlobsFull.filter((i) => !i.pathname.endsWith("/"));
+  }, [initialBlobsFull]);
+
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 

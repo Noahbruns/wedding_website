@@ -251,23 +251,25 @@ export default function HitsterGame() {
           {gameState !== "playing" &&
             gameState !== "won" &&
             gameState !== "welcome" && (
-              <div
-                className={`animate-in fade-in zoom-in absolute bottom-20 z-50 w-full max-w-md rounded-xl border p-6 text-center shadow-2xl duration-300 ${
-                  gameState === "success"
-                    ? "border-green-500 bg-green-900 text-white"
-                    : "border-red-500 bg-red-900 text-white"
-                } `}
-              >
-                <h2 className="mb-1 text-2xl font-bold">
-                  {gameState === "success" ? "Richtig! 🎉" : "Leider nein ❌"}
-                </h2>
-                <p className="mb-4 text-lg">{feedbackMsg}</p>
-                <button
-                  onClick={handleContinue}
-                  className="rounded-full bg-white px-8 py-2 font-bold text-slate-900 shadow-lg transition-transform hover:scale-105"
+              <div className="absolute flex h-full flex-col justify-center">
+                <div
+                  className={`animate-in fade-in zoom-in z-50 w-full max-w-md rounded-xl border p-6 text-center shadow-2xl duration-300 ${
+                    gameState === "success"
+                      ? "border-green-500 bg-green-900 text-white"
+                      : "border-red-500 bg-red-900 text-white"
+                  } `}
                 >
-                  {deck.length === 0 ? "Zur Rangliste" : "Weiter"}
-                </button>
+                  <h2 className="mb-1 text-2xl font-bold">
+                    {gameState === "success" ? "Richtig! 🎉" : "Leider nein ❌"}
+                  </h2>
+                  <p className="mb-4 text-lg">{feedbackMsg}</p>
+                  <button
+                    onClick={handleContinue}
+                    className="rounded-full bg-white px-8 py-2 font-bold text-slate-900 shadow-lg transition-transform hover:scale-105"
+                  >
+                    {deck.length === 0 ? "Zur Rangliste" : "Weiter"}
+                  </button>
+                </div>
               </div>
             )}
 
